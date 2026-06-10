@@ -24,7 +24,18 @@ class MeanImputer(BaseImputer) :
 
 
 class MedianImputer(BaseImputer):
-    pass
+    def impute(self , track_list , feature_name):
+                t2 = []
+                for r in track_list :
+                    i = getattr(r , feature_name)
+                    if (i != "") or (i != 0 )or ( i != "0") :
+                        t2.append(float(i))
+                numt2 = np.array(t2)
+                median_value = np.median(numt2)
+                for r in track_list :
+                    i = getattr(r , feature_name)
+                    if (i == "") or (i == 0 )or ( i== "0") :
+                        setattr(r,feature_name,median_value)
 
 class KNNImputer(BaseImputer):
     pass
