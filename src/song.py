@@ -15,13 +15,40 @@ track_genre):
         self.tempo = tempo
         self.time_signature = time_signature
         self.track_genre = track_genre
-        #use property
-        self.popularity = popularity
-        self.danceability = danceability
-        self.energy = energy
         self.speechiness = speechiness
         self.acoustisness = acousticness
         self.instrumentalness = instrumentalness
         self.liveness = liveness
         self.valence = valence
+        #use property
+        self.popularity = popularity
+        self.danceability = danceability
+        self.energy = energy
+        @property
+        def popularity(self):
+            return self._popularity
+        @popularity.setter
+        def popularity(self , value):
+            if value is None or value == "":
+                self._popularity = 0.0 
+                return
+            if not (0 <= float(value) <= 100):
+                raise ValueError(f"popularity error : value '{value}' must be between 0 and 100 . ")
+            self._popularity = float(value)
+        @property
+        def danceability(self):
+            return self._danceability
+        @danceability.setter
+        def danceability(self , value):
+            if not (0 <= float(value) <= 100):
+                raise ValueError(f"Danceability error : value '{value}' must be between 0.0 and 1.0 . ")
+            self._danceability = float(value)
+        @property
+        def energy(self):
+            return self._energy
+        @energy.setter
+        def energy(self , value):
+            if not (0 <= float(value) <= 100):
+                raise ValueError(f"Energy error : value '{value}' must be between 0.0 and 1.0 . ")
+            self._energy = float(value)
         
