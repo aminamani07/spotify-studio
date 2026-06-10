@@ -14,4 +14,8 @@ acousticness=r["acousticness"], instrumentalness=r["instrumentalness"], liveness
 track_genre=r["track_genre"])
                 self.track_list.append(s_ob)
     def append_track(self , new_song):
-        pass
+        self.track_list.append(new_song)
+        with open(self.file_path , "a", encoding="utf-8" , newline="") as file :
+            w = csv.writer(file)
+            w.writerow([new_song.track_id,new_song.artists,new_song.album_name,new_song.track_name,new_song.popularity,new_song.duration_ms,new_song.explicit,new_song.danceability,new_song.energy,new_song.key,
+                        new_song.loudness,new_song.mode,new_song.speechiness,new_song.acousticness,new_song.instrumentalness,new_song.liveness,new_song.valence,new_song.tempo,new_song.time_signature,new_song.track_genre])
