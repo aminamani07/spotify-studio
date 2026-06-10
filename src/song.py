@@ -1,4 +1,4 @@
-class song :
+class Song :
     def __init__(self , track_id, artists, album_name, track_name, popularity, duration_ms,
 explicit, danceability, energy, key, loudness, mode, speechiness,
 acousticness, instrumentalness, liveness, valence, tempo, time_signature,
