@@ -3,7 +3,7 @@ import sklearn as sk
 from song import Song
 # Missing Values
 class BaseImputer :
-    def impute(self):
+    def impute(self , track_list , feature_name):
         pass
 
 
@@ -20,7 +20,7 @@ class KNNImputer(BaseImputer):
 
 # Outliers
 class BaseOutlierHandler :
-    def handle(self):
+    def handle(self , track_list , feature_name):
         pass
 
 class IQROutlierHandler(BaseOutlierHandler):
