@@ -63,7 +63,17 @@ class BaseOutlierHandler :
         pass
 
 class IQROutlierHandler(BaseOutlierHandler):
-    pass
+    def impute(self , track_list , feature_name):
+        t2 = []
+        for r in track_list :
+            i = getattr(r , feature_name)
+            t2.append(float(i))
+        q1 = np.percentile(t2,25)
+        q3 = np.percentile(t2,75)
+        iqr = q3 - q1
+        low = q1 - 1.5 * iqr
+        up = q3 = 1.5 * iqr
 
 class ZScoreOutlierHandler(BaseOutlierHandler):
     pass
+
