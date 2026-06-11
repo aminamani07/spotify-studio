@@ -1,5 +1,5 @@
 import numpy as np
-import sklearn as sk
+from sklearn.impute import KNNImputer as SKNN
 from song import Song
 # Missing Values
 class BaseImputer :
@@ -38,7 +38,23 @@ class MedianImputer(BaseImputer):
                         setattr(r,feature_name,median_value)
 
 class KNNImputer(BaseImputer):
-    pass
+    def impute(self , track_list , feature_name = None):
+         features = ["danceability" , "energy", "loudness", "speechiness" , "acousticness" , "instrumentalness" , "liveness" , "valence", "tempo"]
+         mat = []
+         for r in track_list :
+              row = []
+              for f in features :
+                   v = getattr(r , f)
+                   if v == "" or v == "0" or v == 0 :
+                        row.append(np.nan)
+                   else :
+                        row.append(float(v))
+              mat.append(row)
+         imputer = SKNN(n_neighbors=5)
+         cl = imputer.fit_transform(mat)
+         for i , r in enumerate(track_list):
+              for j , f in enumerate(features):
+                   setattr(r , f , cl[i][j])
 
 
 # Outliers
