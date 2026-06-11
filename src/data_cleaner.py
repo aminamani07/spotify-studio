@@ -72,7 +72,7 @@ class IQROutlierHandler(BaseOutlierHandler):
         q3 = np.percentile(t2,75)
         iqr = q3 - q1
         low = q1 - 1.5 * iqr
-        up = q3 = 1.5 * iqr
+        up = q3 + 1.5 * iqr
         for r in track_list :
             i = getattr(r , feature_name)
             if float(i) > up :
@@ -81,5 +81,15 @@ class IQROutlierHandler(BaseOutlierHandler):
                  setattr(r,feature_name,low)
 
 class ZScoreOutlierHandler(BaseOutlierHandler):
-    pass
+    def handle(self, track_list, feature_name):
+        t2 = []
+        for r in track_list :
+            i = getattr(r , feature_name)
+            t2.append(float(i))
+        np_arr = np.array(t2)
+        mean_val = np.mean(np_arr)
+        std_val = np.std(np_arr)
+        low = mean_val - 3 * std_val
+        up = mean_val + 3 * std_val
+         
 
