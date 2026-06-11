@@ -63,7 +63,7 @@ class BaseOutlierHandler :
         pass
 
 class IQROutlierHandler(BaseOutlierHandler):
-    def impute(self , track_list , feature_name):
+    def handle(self , track_list , feature_name):
         t2 = []
         for r in track_list :
             i = getattr(r , feature_name)
@@ -73,6 +73,12 @@ class IQROutlierHandler(BaseOutlierHandler):
         iqr = q3 - q1
         low = q1 - 1.5 * iqr
         up = q3 = 1.5 * iqr
+        for r in track_list :
+            i = getattr(r , feature_name)
+            if float(i) > up :
+                setattr(r,feature_name,up)
+            elif low > float(i) :
+                 setattr(r,feature_name,low)
 
 class ZScoreOutlierHandler(BaseOutlierHandler):
     pass
