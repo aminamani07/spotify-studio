@@ -91,5 +91,11 @@ class ZScoreOutlierHandler(BaseOutlierHandler):
         std_val = np.std(np_arr)
         low = mean_val - 3 * std_val
         up = mean_val + 3 * std_val
+        for r in track_list :
+            i = getattr(r , feature_name)
+            if float(i) > up :
+                setattr(r,feature_name,up)
+            elif low > float(i) :
+                    setattr(r,feature_name,low)
          
 
