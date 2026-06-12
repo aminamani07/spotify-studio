@@ -78,4 +78,7 @@ class Dataanalyzer :
     def get_top_energetic(self , n):
         sorted_track = sorted(self.track_list , key = lambda track : float(getattr(track, "energy")),reverse= True)
         return sorted_track[:n]
+    def get_top_popular(self , n):
+        sorted_track = sorted(self.track_list , key = lambda track : float(getattr(track, "popularity")),reverse= True)
+        return sorted_track[:n]
 
