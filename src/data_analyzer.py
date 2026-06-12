@@ -61,3 +61,10 @@ class Dataanalyzer :
         counter = Counter(t2)
         return_val = counter.most_common(1)[0][0]
         return return_val
+    def filter_by_artist(self , atrists):
+        t2 = []
+        for r in self.track_list :
+            i = getattr(r , "artists")
+            if i == atrists :
+                t2.append(r)
+        return t2
