@@ -61,20 +61,20 @@ class Dataanalyzer :
         counter = Counter(t2)
         return_val = counter.most_common(1)[0][0]
         return return_val
-    def filter_by_artist(self , atrists):
+    def filter_by_artist(self , atrists , n ):
         t2 = []
         for r in self.track_list :
             i = getattr(r , "artists")
             if i == atrists :
                 t2.append(r)
-        return t2
-    def filter_by_genre(self , track_genre):
+        return t2[:n]
+    def filter_by_genre(self , track_genre , n ):
         t2 = []
         for r in self.track_list :
             i = getattr(r , "track_genre")
             if i == track_genre :
                 t2.append(r)
-        return t2
+        return t2[:n]
     def get_top_tracks(self , feature, n):
         sorted_track = sorted(self.track_list , key = lambda track : float(getattr(track, feature)),reverse= True)
         return sorted_track[:n]
