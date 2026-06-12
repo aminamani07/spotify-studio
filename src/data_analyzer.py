@@ -1,4 +1,5 @@
 import matplotlib as pb
+from collections import Counter
 import numpy as np
 
 class Dataanalyzer :
