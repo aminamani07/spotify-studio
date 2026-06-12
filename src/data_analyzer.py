@@ -12,4 +12,11 @@ class Dataanalyzer :
         nt2 = np.array(t2)
         return_val = np.mean(nt2)
         return return_val
-    
+    def analyze_median(self , feature_name) :
+        t2 = []
+        for r in self.track_list :
+            i = getattr(r , feature_name)
+            t2.append(float(i))
+        nt2 = np.array(t2)
+        return_val = np.median(nt2)
+        return return_val
