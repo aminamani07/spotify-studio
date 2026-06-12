@@ -68,3 +68,11 @@ class Dataanalyzer :
             if i == atrists :
                 t2.append(r)
         return t2
+    def filter_by_genre(self , track_genre):
+        t2 = []
+        for r in self.track_list :
+            i = getattr(r , "track_genre")
+            if i == track_genre :
+                t2.append(r)
+        return t2
+
