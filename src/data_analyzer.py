@@ -75,10 +75,7 @@ class Dataanalyzer :
             if i == track_genre :
                 t2.append(r)
         return t2
-    def get_top_energetic(self , feature, n):
-        sorted_track = sorted(self.track_list , key = lambda track : float(getattr(track, feature)),reverse= True)
-        return sorted_track[:n]
-    def get_top_popular(self , feature , n):
+    def get_top_tracks(self , feature, n):
         sorted_track = sorted(self.track_list , key = lambda track : float(getattr(track, feature)),reverse= True)
         return sorted_track[:n]
     def recommend(self , feature , n ,track):
