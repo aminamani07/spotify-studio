@@ -53,3 +53,11 @@ class Dataanalyzer :
         nt2 = np.array(t2)
         return_val = np.std(nt2)
         return return_val
+    def analyze_mode(self , feature_name) :
+        t2 = []
+        for r in self.track_list :
+            i = getattr(r , feature_name)
+            t2.append(float(i))
+        counter = Counter(t2)
+        return_val = counter.most_common(1)[0][0]
+        return return_val
