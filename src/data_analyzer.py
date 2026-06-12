@@ -75,4 +75,7 @@ class Dataanalyzer :
             if i == track_genre :
                 t2.append(r)
         return t2
+    def get_top_energetic(self , n):
+        sorted_track = sorted(self.track_list , key = lambda track : float(getattr(track, "energy")),reverse= True)
+        return sorted_track[:n]
 
