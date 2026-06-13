@@ -158,6 +158,45 @@ def main():
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             break
+                    elif ch == 8 :
+                        artist = input("enter your artist : ").strip().lower()
+                        m = int(input("enter the number of tracks you want : ").strip())
+                        l = analyzer.filter_by_artist(artist , m)
+                        if not l :
+                            print("No tracks found !")
+                        else :
+                            print("______results______")
+                            for id , song in enumerate(l , 1):
+                                print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
+                    elif ch == 9 :
+                        genre = input("enter your genre : ").strip().lower()
+                        m = int(input("enter the number of tracks you want : ").strip())
+                        l = analyzer.filter_by_genre(genre , m)
+                        if not l :
+                            print("No tracks found !")
+                        else :
+                            print("______results______")
+                            for id , song in enumerate(l , 1):
+                                print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
+                    elif ch == 9 :
+                        fe = input("enter your feature : ").strip().lower()
+                        m = int(input("enter the number of tracks you want : ").strip())
+                        l = analyzer.get_top_tracks(fe , m)
+                        if not l :
+                            print("No tracks found !")
+                        else :
+                            print("______results______")
+                            for id , song in enumerate(l , 1):
+                                print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
             elif n == 4 :
                 pass
             elif n == 5 :

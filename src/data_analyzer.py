@@ -64,7 +64,7 @@ class Dataanalyzer :
         t2 = []
         for r in self.track_list :
             i = getattr(r , "artists")
-            if i == atrists :
+            if i.lower() == atrists.lower() :
                 t2.append(r)
         return t2[:n]
     def filter_by_genre(self , track_genre , n ):
