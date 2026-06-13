@@ -1,6 +1,6 @@
 import csv
 from song import Song
-class data_loader :
+class Data_loader :
     def __init__(self , file_path):
         self.file_path = file_path
         self.track_list = []

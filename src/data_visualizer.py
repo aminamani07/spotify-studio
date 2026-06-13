@@ -65,27 +65,27 @@ class Datavisualizer :
                     matrix[i][j] = 0
                 else :
                     matrix[i][j] = num / ((denx * deny)** 0.5)
-                plt.clf()
-                fig, ax = plt.subplots(figsize=(8, 6))
-                
-                im = ax.imshow(matrix, cmap='coolwarm', vmin=-1, vmax=1)
-                
-                cbar = ax.figure.colorbar(im, ax=ax)
-                cbar.ax.set_ylabel("Correlation Coefficient", rotation=-90, va="bottom")
-                
-                ax.set_xticks(range(n))
-                ax.set_yticks(range(n))
-                ax.set_xticklabels(features, rotation=45, ha="right")
-                ax.set_yticklabels(features)
-                
-                for i in range(n):
-                    for j in range(n):
-                        text_color = "black" if abs(matrix[i][j]) < 0.7 else "white"
-                        ax.text(j, i, f"{matrix[i][j]:.2f}", 
-                                ha="center", va="center", color=text_color, fontweight='bold')
-                
-                plt.title("Audio Features Correlation Matrix", pad=20)
-                plt.tight_layout()
-                plt.show()
+        plt.clf()
+        fig, ax = plt.subplots(figsize=(8, 6))
+        
+        im = ax.imshow(matrix, cmap='coolwarm', vmin=-1, vmax=1)
+        
+        cbar = ax.figure.colorbar(im, ax=ax)
+        cbar.ax.set_ylabel("Correlation Coefficient", rotation=-90, va="bottom")
+        
+        ax.set_xticks(range(n))
+        ax.set_yticks(range(n))
+        ax.set_xticklabels(features, rotation=45, ha="right")
+        ax.set_yticklabels(features)
+        
+        for col in range(n):
+            for row in range(n):
+                text_color = "black" if abs(matrix[col][row]) < 0.7 else "white"
+                ax.text(row, col , f"{matrix[col][row]:.2f}", 
+                        ha="center", va="center", color=text_color, fontweight='bold')
+        
+        plt.title("Audio Features Correlation Matrix", pad=20)
+        plt.tight_layout()
+        plt.show()
 
 
