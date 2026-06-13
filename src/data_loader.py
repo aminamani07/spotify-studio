@@ -19,3 +19,8 @@ track_genre=r["track_genre"])
             w = csv.writer(file)
             w.writerow([new_song.track_id,new_song.artists,new_song.album_name,new_song.track_name,new_song.popularity,new_song.duration_ms,new_song.explicit,new_song.danceability,new_song.energy,new_song.key,
                         new_song.loudness,new_song.mode,new_song.speechiness,new_song.acousticness,new_song.instrumentalness,new_song.liveness,new_song.valence,new_song.tempo,new_song.time_signature,new_song.track_genre])
+    def reset_data(self):
+        self.track_list = []
+        self.read_data()
+    def save_data(self):
+        pass
