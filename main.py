@@ -62,6 +62,9 @@ def main():
                             break
                     else :
                         print("invalid choice ... pleas try again . ")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
             elif n == 2 :
                 while(True) :
                     print("pleas choose one of this items that you want : \n1 . handling outlier values with using IQROutlier (one feature) \n2 . handling outlier values with using ZScoreOutlier (one feature) ")
@@ -90,6 +93,9 @@ def main():
                             break
                     else :
                         print("invalid choice ... pleas try again . ")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
             elif n == 3 :
                 analyzer = Dataanalyzer(loader.track_list)
                 while(True) :
@@ -184,7 +190,7 @@ def main():
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             break
-                    elif ch == 9 :
+                    elif ch == 10 :
                         fe = input("enter your feature : ").strip().lower()
                         m = int(input("enter the number of tracks you want : ").strip())
                         l = analyzer.get_top_tracks(fe , m)
@@ -194,6 +200,13 @@ def main():
                             print("______results______")
                             for id , song in enumerate(l , 1):
                                 print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
+                    elif ch == 11 :
+                        pass
+                    else :
+                        print("invalid choice ... pleas try again . ")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             break
