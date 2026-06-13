@@ -28,9 +28,9 @@ def main():
                     print("goodbye dear ... nice to see you . ")
                     break
             elif n == 1 :
-                while(True)
+                while(True) :
                     print("pleas choose one of this items that you want : \n1 . fulling missing values with using Mean (one feature) \n2 . fulling missing values with using Median (one feature) \n3 . fulling missing values with using LNN or machine learing (all features)")
-                    ch = int(input("pleas enter your choice : ").strip())
+                    ch = int(input("pleas enter your choice (1 - 3) : ").strip())
                     if ch == 1 :
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
@@ -63,7 +63,27 @@ def main():
                     else :
                         print("invalid choice ... pleas try again . ")
             elif n == 2 :
-                pass
+                while(True) :
+                    print("pleas choose one of this items that you want : \n1 . handling outlier values with using IQROutlier (one feature) \n2 . handling outlier values with using ZScoreOutlier (one feature) ")
+                    ch = int(input("pleas enter your choice (1 - 3) : ").strip())
+                    if ch == 1 :
+                        fe = input("enter your feature : ").strip()
+                        if fe.lower() in features :
+                            handle = IQROutlierHandler()
+                            handle.handle(loader.track_list , fe)
+                            print(f"outlier values in {fe} handled IQROutlier ")
+                        else :
+                            print("invalid feature !!!")
+                    elif ch == 2 :
+                        fe = input("enter your feature : ").strip()
+                        if fe.lower() in features :
+                            handle = ZScoreOutlierHandler()
+                            handle.handle(loader.track_list , fe)
+                            print(f"outlier values in {fe} handled ZScoreOutlier ")
+                        else :
+                            print("invalid feature !!!")
+                    else :
+                        print("invalid choice ... pleas try again . ")
             elif n == 3 :
                 pass
             elif n == 4 :
