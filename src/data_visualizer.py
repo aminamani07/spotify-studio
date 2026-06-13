@@ -40,7 +40,7 @@ class Datavisualizer :
         color_ind = [u_genres.index(g) for g in genres]
         t = "Scatter plot ; " + feature_x + " vs " + feature_y
         plt.clf()
-        plt.scatter(tx , ty , c=color_ind , cmap='viridis' , alpha=0.7)
+        scatter = plt.scatter(tx , ty , c=color_ind , cmap='viridis' , alpha=0.7)
         plt.title(t)
         plt.xlabel(feature_x)
         plt.ylabel(feature_y)
@@ -55,7 +55,7 @@ class Datavisualizer :
         for i in range(n):
             for j in range(n):
                 X = data[features[i]]
-                Y = dta[features[j]]
+                Y = data[features[j]]
                 meanx = sum(X)/len(X)
                 meany = sum(Y)/len(Y)
                 num = sum((x - meanx) * (y - meany) for x,y in zip(X , Y))
