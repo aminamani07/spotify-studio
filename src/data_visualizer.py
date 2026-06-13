@@ -46,7 +46,24 @@ class Datavisualizer :
         plt.ylabel(feature_y)
         plt.legend(handles=scatter.legend_elements()[0], labels=u_genres , title="Genres")
         plt.show()
-    
-
+    def plot_correlation_matrix(self , features):
+        n = len(features)
+        data = {}
+        for f in features :
+            data[f] = [float(getattr(r , f)) for r in self.track_list]
+        matrix = [[0.0] * n for ii in range(n)]
+        for i in range(n):
+            for j in range(n):
+                X = data[features[i]]
+                Y = dta[features[j]]
+                meanx = sum(X)/len(X)
+                meany = sum(Y)/len(Y)
+                num = sum((x - meanx) * (y - meany) for x,y in zip(X , Y))
+                denx = sum((x - meanx) ** 2 for x in X)
+                deny = sum((y - meany) ** 2 for y in Y)
+                if denx == 0 or deny == 0 :
+                    matrix[i][j] = 0
+                else :
+                    matrix[i][j] = num / ((denx * deny)** 0.5)
 
 
