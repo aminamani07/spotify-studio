@@ -21,9 +21,11 @@ def main():
             n = int(input("\nyour choice (1 - 6) : ").strip())
             print("-" * 40)
             if n == 7 :
-                #save#
-                print("goodbye dear ... nice to see you . ")
-                break
+                loader.save_data()
+                st = input("do you want to exit ? (y/n) : ")
+                if st in ["y","yes","Y"]:
+                    print("goodbye dear ... nice to see you . ")
+                    break
             elif n == 1 :
                 pass
             elif n == 2 :
@@ -35,7 +37,7 @@ def main():
             elif n == 5 :
                 pass
             elif n == 6 :
-                pass
+                loader.reset_data()
             else :
                 print("invalid number ... pleas try again ... ")
 
