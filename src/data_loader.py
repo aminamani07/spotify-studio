@@ -23,4 +23,21 @@ track_genre=r["track_genre"])
         self.track_list = []
         self.read_data()
     def save_data(self):
-        pass
+        out_path = "src/cleaned_dataset.csv"
+        fnames = [
+            "track_id", "artists", "album_name", "track_name", "popularity", 
+            "duration_ms", "explicit", "danceability", "energy", "key", 
+            "loudness", "mode", "speechiness", "acousticness", "instrumentalness", 
+            "liveness", "valence", "tempo", "time_signature", "track_genre"
+        ]
+        with open(out_path, "w", encoding="utf-8", newline="") as file:
+            writer = csv.writer(file)
+            writer.writerow(fnames)
+            for song in self.track_list:
+                writer.writerow([
+                    song.track_id, song.artists, song.album_name, song.track_name, song.popularity,
+                    song.duration_ms, song.explicit, song.danceability, song.energy, song.key,
+                    song.loudness, song.mode, song.speechiness, song.acousticness, song.instrumentalness,
+                    song.liveness, song.valence, song.tempo, song.time_signature, song.track_genre
+                ])
+        print(f"sucsessfully saved in '{out_path}' file . ")
