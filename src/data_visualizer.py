@@ -10,7 +10,17 @@ class Datavisualizer :
             t2.append(float(i))
         t = "Box plot ; " + feature_name.upper() + " : " + title
         plt.clf()
-        plt.boxplot(t2)
+        box = plt.boxplot(t2 , patch_artist=True)
+        if "before" in title.lower():
+            b_color = '#ff9999'
+        else :
+            b_color = '#99ff99'
+        for p in box['boxes']:
+            p.set_facecolor(b_color)
+            p.set_edgecolor('#333333')
+        for m in box['medians']:
+            m.set_color('#111111')
+            m.set_linewidth(2)
         plt.title(t)
         plt.ylabel(feature_name)
         plt.xlabel("Data Distribution")
