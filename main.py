@@ -65,7 +65,7 @@ def main():
             elif n == 2 :
                 while(True) :
                     print("pleas choose one of this items that you want : \n1 . handling outlier values with using IQROutlier (one feature) \n2 . handling outlier values with using ZScoreOutlier (one feature) ")
-                    ch = int(input("pleas enter your choice (1 - 3) : ").strip())
+                    ch = int(input("pleas enter your choice (1 - 2) : ").strip())
                     if ch == 1 :
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
@@ -74,6 +74,9 @@ def main():
                             print(f"outlier values in {fe} handled IQROutlier ")
                         else :
                             print("invalid feature !!!")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
                     elif ch == 2 :
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
@@ -82,10 +85,79 @@ def main():
                             print(f"outlier values in {fe} handled ZScoreOutlier ")
                         else :
                             print("invalid feature !!!")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
                     else :
                         print("invalid choice ... pleas try again . ")
             elif n == 3 :
-                pass
+                analyzer = Dataanalyzer(loader.track_list)
+                while(True) :
+                    print("pleas choose one of this items : \n1 . Mean (one feature) \n2 . Median (one feature) \n3 . Maximum (one feature) \n4 . Minimum (one feature) \n5 . Varians (one feature) \n6 . Standard_Divation (one feature) \n7 . Mode (one feature) \n8 . Filter by artist \n9 . Filter by genre \n10 . Get top tracks (in one feature) \n11 . Recommend (in one feature) ")
+                    ch = int(input("pleas enter your choice (1 - 11) : ").strip())
+                    if ch == 1 :
+                        fe = input("enter your feature : ").strip()
+                        if fe.lower() in features :
+                            print(analyzer.analyze_mean(fe))
+                        else :
+                            print("invalid feature !!!")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
+                    elif ch == 2 :
+                        fe = input("enter your feature : ").strip()
+                        if fe.lower() in features :
+                            print(analyzer.analyze_median(fe))
+                        else :
+                            print("invalid feature !!!")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
+                    elif ch == 3 :
+                        fe = input("enter your feature : ").strip()
+                        if fe.lower() in features :
+                            print(analyzer.analyze_maximum(fe))
+                        else :
+                            print("invalid feature !!!")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
+                    elif ch == 4 :
+                        fe = input("enter your feature : ").strip()
+                        if fe.lower() in features :
+                            print(analyzer.analyze_minimum(fe))
+                        else :
+                            print("invalid feature !!!")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
+                    elif ch == 5 :
+                        fe = input("enter your feature : ").strip()
+                        if fe.lower() in features :
+                            print(analyzer.analyze_varians(fe))
+                        else :
+                            print("invalid feature !!!")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
+                    elif ch == 6 :
+                        fe = input("enter your feature : ").strip()
+                        if fe.lower() in features :
+                            print(analyzer.analyze_standarad_deviation(fe))
+                        else :
+                            print("invalid feature !!!")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
+                    elif ch == 7 :
+                        fe = input("enter your feature : ").strip()
+                        if fe.lower() in features :
+                            print(analyzer.analyze_mode(fe))
+                        else :
+                            print("invalid feature !!!")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
             elif n == 4 :
                 pass
             elif n == 5 :
