@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+from wordcloud import WordCloud
 
 class Datavisualizer :
     def __init__(self , track_list):
@@ -86,6 +87,13 @@ class Datavisualizer :
         
         plt.title("Audio Features Correlation Matrix", pad=20)
         plt.tight_layout()
+        plt.show()
+    def plot_wordcloud(self):
+        txt = " ".join([getattr(r , "track_genre" , "") for r in self.track_list])
+        wc = WordCloud(width=800 , height=400,background_color='white').generate(txt)
+        plt.clf()
+        plt.imshow(wc , interpolation='bilinear')
+        plt.axis("off")
         plt.show()
 
 
