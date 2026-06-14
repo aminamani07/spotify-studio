@@ -250,7 +250,7 @@ def main():
                 datavisualizer = Datavisualizer(loader.track_list)
                 while(True) :
                     try :
-                        print("pleas choose one of this items that you want : \n1 . Box plot designing (one feature) \n2 . Scatter plot designing (for two feature) \n3 . Correlation matrix designing or Heatmap (all features)\n4 . Wordcloud plot (optional)")
+                        print("pleas choose one of this items that you want : \n1 . Box plot designing (one feature) \n2 . Scatter plot designing (for two feature) \n3 . Correlation matrix designing or Heatmap (all features)\n4 . Wordcloud plot (one feature (str))")
                         ch = int(input("pleas enter your choice (1 - 4) : ").strip())
                     except ValueError as e :
                         print(e)
@@ -293,7 +293,11 @@ def main():
                         if ex in ["y","yes","Yes"]:
                             break
                     elif ch == 4 :
-                        datavisualizer.plot_wordcloud()
+                        fe = input("enter your feature : ").strip().lower()
+                        if fe.lower() in features :
+                            datavisualizer.plot_wordcloud(fe.lower())
+                        else :
+                            print("invalid feature name !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             break
