@@ -1,4 +1,5 @@
 import os
+import random
 from src.song import Song
 from src.data_loader import Data_loader
 from src.data_analyzer import Dataanalyzer
@@ -221,14 +222,46 @@ def main():
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             break
-
                     else :
                         print("invalid choice ... pleas try again . ")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             break
-            elif n == 4 :
-                pass
+            elif n == 1 :
+                datavisualizer = Datavisualizer(loader.track_list)
+                while(True) :
+                    print("pleas choose one of this items that you want : \n1 . Box plot designing (one feature) \n2 . Scatter plot designing (for two feature) \n3 . Correlation matrix designing or Heatmap (all features)")
+                    ch = int(input("pleas enter your choice (1 - 3) : ").strip())
+                    if ch == 1 :
+                        title = input("pleas enter your the title : ").strip()
+                        fe = input("enter your feature : ").strip().lower()
+                        datavisualizer.boxplot(title , fe)
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
+                    elif ch == 3 :
+                        fe = []
+                        m = int(input("enter the features that you want to design a correlation matrix for them : "))
+                        for i in range(m):
+                            fe.append(input(f"* feature {i+1} : "))
+                        datavisualizer.plot_correlation_matrix(fe)
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
+                    elif ch == 2 :
+                        r_list = random.sample(loader.track_list , 1000)
+                        data_v = Datavisualizer(r_list)
+                        f1 = input("enter first feature : ").strip()
+                        f2 = input("enter second feature : ").strip()
+                        data_v.scatterplot(f1 , f2)
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
+                    else :
+                        print("invalid choice ... pleas try again . ")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
             elif n == 5 :
                 pass
             elif n == 6 :

@@ -32,7 +32,7 @@ class Datavisualizer :
         for r in self.track_list :
             i = getattr(r , feature_x)
             j = getattr(r , feature_y)
-            g = getattr(r ,"genre")
+            g = getattr(r ,"track_genre")
             tx.append(float(i))
             ty.append(float(j))
             genres.append(g)
