@@ -24,37 +24,37 @@ track_genre):
         self.popularity = popularity
         self.danceability = danceability
         self.energy = energy
-        @property
-        def popularity(self):
-            return self._popularity
-        @popularity.setter
-        def popularity(self , value):
-            if value is None or value == "":
-                self._popularity = 0.0 
-                return
-            if not (0 <= float(value) <= 100):
-                raise ValueError(f"popularity error : value '{value}' must be between 0 and 100 . ")
-            self._popularity = float(value)
-        @property
-        def danceability(self):
-            return self._danceability
-        @danceability.setter
-        def danceability(self , value):
-            if value is None or value == "":
-                self._danceability = 0.0 
-                return
-            if not (0 <= float(value) <= 100):
-                raise ValueError(f"Danceability error : value '{value}' must be between 0.0 and 1.0 . ")
-            self._danceability = float(value)
-        @property
-        def energy(self):
-            return self._energy
-        @energy.setter
-        def energy(self , value):
-            if value is None or value == "":
-                self._energy = 0.0 
-                return
-            if not (0 <= float(value) <= 100):
-                raise ValueError(f"Energy error : value '{value}' must be between 0.0 and 1.0 . ")
-            self._energy = float(value)
-        
+    @property
+    def popularity(self):
+        return self._popularity
+    @popularity.setter
+    def popularity(self , value):
+        if value is None or value == "":
+            self._popularity = 0.0 
+            return
+        if not (0 <= float(value) <= 100):
+            raise ValueError(f"popularity error : value '{value}' must be between 0 and 100 . ")
+        self._popularity = float(value)
+    @property
+    def danceability(self):
+        return self._danceability
+    @danceability.setter
+    def danceability(self , value):
+        if value is None or value == "":
+            self._danceability = 0.0 
+            return
+        if not (0 <= float(value) <= 100):
+            raise ValueError(f"Danceability error : value '{value}' must be between 0.0 and 1.0 . ")
+        self._danceability = float(value)
+    @property
+    def energy(self):
+        return self._energy
+    @energy.setter
+    def energy(self , value):
+        if value is None or value == "":
+            self._energy = 0.0 
+            return
+        if not (0 <= float(value) <= 100):
+            raise ValueError(f"Energy error : value '{value}' must be between 0.0 and 1.0 . ")
+        self._energy = float(value)
+    

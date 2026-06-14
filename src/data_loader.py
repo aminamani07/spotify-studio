@@ -23,7 +23,7 @@ track_genre=r["track_genre"])
         self.track_list = []
         self.read_data()
     def save_data(self):
-        out_path = "src/cleaned_dataset.csv"
+        out_path = "data/cleaned_dataset.csv"
         fnames = [
             "track_id", "artists", "album_name", "track_name", "popularity", 
             "duration_ms", "explicit", "danceability", "energy", "key", 
