@@ -1,4 +1,5 @@
 import os
+import pygame
 import random
 from src.song import Song
 from src.data_loader import Data_loader
@@ -21,6 +22,9 @@ def main():
         loader.read_data()
         print(f"load sucsessfull ... we can load {len(loader.track_list)} track from your file . ")
         print("================================\n*** WELCOM TO SPOTIFY STUDIO ***\n=====================================\n")
+        pygame.mixer.init()
+        pygame.mixer.music.load("sound.mp3")
+        pygame.mixer.music.play(-1) #repeat when it music time finish
         while(True):
             try :
                 print("pleas choose one of these items : \n1 . handle missing values (imputation)\n2 . handle outliers (clipping)\n3 . display statistical summary\n4 . data stroytelling & visualization\n5 . add a new track to dataset\n6 . reset dataset (reload original data)\n7 . save & exit")
@@ -34,6 +38,7 @@ def main():
                 st = input("do you want to exit ? (y/n) : ")
                 if st in ["y","yes","Y"]:
                     print("goodbye dear ... nice to see you . ")
+                    pygame.mixer.music.stop()
                     break
             elif n == 1 :
                 while(True) :
