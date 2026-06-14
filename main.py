@@ -22,9 +22,12 @@ def main():
         print(f"load sucsessfull ... we can load {len(loader.track_list)} track from your file . ")
         print("================================\n*** WELCOM TO SPOTIFY STUDIO ***\n=====================================\n")
         while(True):
-            print("pleas choose one of these items : \n1 . handle missing values (imputation)\n2 . handle outliers (clipping)\n3 . display statistical summary\n4 . data stroytelling & visualization\n5 . add a new track to dataset\n6 . reset dataset (reload original data)\n7 . save & exit")
-            n = int(input("\nyour choice (1 - 7) : ").strip())
-            print("-" * 40)
+            try :
+                print("pleas choose one of these items : \n1 . handle missing values (imputation)\n2 . handle outliers (clipping)\n3 . display statistical summary\n4 . data stroytelling & visualization\n5 . add a new track to dataset\n6 . reset dataset (reload original data)\n7 . save & exit")
+                n = int(input("\nyour choice (1 - 7) : ").strip())
+                print("-" * 40)
+            except ValueError as e :
+                print(e)
             if n == 7 :
                 loader.save_data()
                 st = input("do you want to exit ? (y/n) : ")
@@ -33,8 +36,11 @@ def main():
                     break
             elif n == 1 :
                 while(True) :
-                    print("pleas choose one of this items that you want : \n1 . fulling missing values with using Mean (one feature) \n2 . fulling missing values with using Median (one feature) \n3 . fulling missing values with using LNN or machine learing (all features)")
-                    ch = int(input("pleas enter your choice (1 - 3) : ").strip())
+                    try :
+                        print("pleas choose one of this items that you want : \n1 . fulling missing values with using Mean (one feature) \n2 . fulling missing values with using Median (one feature) \n3 . fulling missing values with using LNN or machine learing (all features)")
+                        ch = int(input("pleas enter your choice (1 - 3) : ").strip())
+                    except ValueError as e :
+                        print(e)
                     if ch == 1 :
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
@@ -71,8 +77,11 @@ def main():
                             break
             elif n == 2 :
                 while(True) :
-                    print("pleas choose one of this items that you want : \n1 . handling outlier values with using IQROutlier (one feature) \n2 . handling outlier values with using ZScoreOutlier (one feature) ")
-                    ch = int(input("pleas enter your choice (1 - 2) : ").strip())
+                    try :
+                        print("pleas choose one of this items that you want : \n1 . handling outlier values with using IQROutlier (one feature) \n2 . handling outlier values with using ZScoreOutlier (one feature) ")
+                        ch = int(input("pleas enter your choice (1 - 2) : ").strip())
+                    except ValueError as e :
+                        print(e)
                     if ch == 1 :
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
@@ -103,8 +112,11 @@ def main():
             elif n == 3 :
                 analyzer = Dataanalyzer(loader.track_list)
                 while(True) :
-                    print("pleas choose one of this items : \n1 . Mean (one feature) \n2 . Median (one feature) \n3 . Maximum (one feature) \n4 . Minimum (one feature) \n5 . Varians (one feature) \n6 . Standard_Divation (one feature) \n7 . Mode (one feature) \n8 . Filter by artist \n9 . Filter by genre \n10 . Get top tracks (in one feature) \n11 . Recommend (in one feature) ")
-                    ch = int(input("pleas enter your choice (1 - 11) : ").strip())
+                    try :
+                        print("pleas choose one of this items : \n1 . Mean (one feature) \n2 . Median (one feature) \n3 . Maximum (one feature) \n4 . Minimum (one feature) \n5 . Varians (one feature) \n6 . Standard_Divation (one feature) \n7 . Mode (one feature) \n8 . Filter by artist \n9 . Filter by genre \n10 . Get top tracks (in one feature) \n11 . Recommend (in one feature) ")
+                        ch = int(input("pleas enter your choice (1 - 11) : ").strip())
+                    except ValueError as e :
+                        print(e)
                     if ch == 1 :
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
@@ -233,8 +245,11 @@ def main():
             elif n == 4 :
                 datavisualizer = Datavisualizer(loader.track_list)
                 while(True) :
-                    print("pleas choose one of this items that you want : \n1 . Box plot designing (one feature) \n2 . Scatter plot designing (for two feature) \n3 . Correlation matrix designing or Heatmap (all features)")
-                    ch = int(input("pleas enter your choice (1 - 3) : ").strip())
+                    try :
+                        print("pleas choose one of this items that you want : \n1 . Box plot designing (one feature) \n2 . Scatter plot designing (for two feature) \n3 . Correlation matrix designing or Heatmap (all features)")
+                        ch = int(input("pleas enter your choice (1 - 3) : ").strip())
+                    except ValueError as e :
+                        print(e)
                     if ch == 1 :
                         title = input("pleas enter your the title (before / after __ cleaning dataset by using '{}' )" ).strip()
                         fe = input("enter your feature : ").strip().lower()
@@ -249,7 +264,7 @@ def main():
                         fe = []
                         m = int(input("enter the features that you want to design a correlation matrix for them : "))
                         c = 0
-                        while(c <= m):
+                        while(c < m):
                             f = input(f"* feature {c+1} : ")
                             if f.lower() in features :
                                 fe.append(f.lower())
@@ -307,9 +322,6 @@ track_genre)
                 sa = input("do you want to save changes in last output file ? (y/n) : ")
                 if sa in ["y","yes","Yes"]: 
                     loader.save_data()
-                ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
-                if ex in ["y","yes","Yes"]:
-                    break
             elif n == 6 :
                 loader.reset_data()
             else :
