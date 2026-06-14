@@ -204,7 +204,24 @@ def main():
                         if ex in ["y","yes","Yes"]:
                             break
                     elif ch == 11 :
-                        pass
+                        fe = input("enter your feature : ").strip().lower()
+                        m = int(input("enter the number of tracks you want : ").strip())
+                        t_name = input("enter your track name : ").strip()
+                        l = []
+                        for r in loader.track_list :
+                            if getattr(r , "track_name") == t_name :
+                                l = analyzer.recommend(fe , m , r)
+                                break
+                        if l :
+                            print("______results______")
+                            for id , song in enumerate(l , 1):
+                                print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
+                        else :
+                            print("No tracks found !")
+                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        if ex in ["y","yes","Yes"]:
+                            break
+
                     else :
                         print("invalid choice ... pleas try again . ")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
