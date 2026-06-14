@@ -28,6 +28,7 @@ def main():
                 print("-" * 40)
             except ValueError as e :
                 print(e)
+                n = 9
             if n == 7 :
                 loader.save_data()
                 st = input("do you want to exit ? (y/n) : ")
@@ -41,6 +42,7 @@ def main():
                         ch = int(input("pleas enter your choice (1 - 3) : ").strip())
                     except ValueError as e :
                         print(e)
+                        ch = 5
                     if ch == 1 :
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
@@ -81,6 +83,7 @@ def main():
                         print("pleas choose one of this items that you want : \n1 . handling outlier values with using IQROutlier (one feature) \n2 . handling outlier values with using ZScoreOutlier (one feature) ")
                         ch = int(input("pleas enter your choice (1 - 2) : ").strip())
                     except ValueError as e :
+                        ch = 3
                         print(e)
                     if ch == 1 :
                         fe = input("enter your feature : ").strip()
@@ -117,6 +120,7 @@ def main():
                         ch = int(input("pleas enter your choice (1 - 11) : ").strip())
                     except ValueError as e :
                         print(e)
+                        ch = 14
                     if ch == 1 :
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
@@ -250,6 +254,7 @@ def main():
                         ch = int(input("pleas enter your choice (1 - 3) : ").strip())
                     except ValueError as e :
                         print(e)
+                        ch = 5
                     if ch == 1 :
                         title = input("pleas enter your the title (before / after __ cleaning dataset by using '{}' )" ).strip()
                         fe = input("enter your feature : ").strip().lower()
@@ -314,14 +319,17 @@ def main():
                 tempo = input("enter your track tempo : ").strip()
                 time_signature = input("enter your track time_signature : ").strip()
                 track_genre = input("enter your track track_genre : ").strip()
-                new_song = Song(track_id, artists, album_name, track_name, popularity, duration_ms,
-explicit, danceability, energy, key, loudness, mode, speechiness,
-acousticness, instrumentalness, liveness, valence, tempo, time_signature,
-track_genre)
-                loader.append_track(new_song)
-                sa = input("do you want to save changes in last output file ? (y/n) : ")
-                if sa in ["y","yes","Yes"]: 
-                    loader.save_data()
+                try :
+                    new_song = Song(track_id, artists, album_name, track_name, popularity, duration_ms,
+    explicit, danceability, energy, key, loudness, mode, speechiness,
+    acousticness, instrumentalness, liveness, valence, tempo, time_signature,
+    track_genre)
+                    loader.append_track(new_song)
+                    sa = input("do you want to save changes in last output file ? (y/n) : ")
+                    if sa in ["y","yes","Yes"]: 
+                        loader.save_data()
+                except ValueError as e :
+                    print(e)
             elif n == 6 :
                 loader.reset_data()
             else :
