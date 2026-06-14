@@ -7,7 +7,10 @@ from src.data_visualizer import Datavisualizer
 from src.data_cleaner import MeanImputer , MedianImputer , KNNImputer , BaseImputer , BaseOutlierHandler , ZScoreOutlierHandler , IQROutlierHandler
 
 def main():
-    features = []
+    features = ["track_id" , "artists", "album_name" , "track_name", "popularity", "duration_ms",
+"explicit" , "danceability" , "energy", "key", "loudness", "mode", "speechiness",
+"acousticness", "instrumentalness", "liveness", "valence", "tempo", "time_signature",
+"track_genre"]
     f_path = "data/dataset.csv"
     if not os.path.exists(f_path):
         print(f"file {f_path} doesn't exist")
@@ -36,7 +39,7 @@ def main():
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
                             imputer = MeanImputer()
-                            imputer.impute(loader.track_list , fe)
+                            imputer.impute(loader.track_list , fe.lower())
                             print(f"missing values in {fe} replaced using Mean")
                         else :
                             print("invalid feature !!!")
@@ -47,7 +50,7 @@ def main():
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
                             imputer = MedianImputer()
-                            imputer.impute(loader.track_list , fe)
+                            imputer.impute(loader.track_list , fe.lower())
                             print(f"missing values in {fe} replaced using Median")
                         else :
                             print("invalid feature !!!")
@@ -74,7 +77,7 @@ def main():
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
                             handle = IQROutlierHandler()
-                            handle.handle(loader.track_list , fe)
+                            handle.handle(loader.track_list , fe.lower())
                             print(f"outlier values in {fe} handled IQROutlier ")
                         else :
                             print("invalid feature !!!")
@@ -85,7 +88,7 @@ def main():
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
                             handle = ZScoreOutlierHandler()
-                            handle.handle(loader.track_list , fe)
+                            handle.handle(loader.track_list , fe.lower())
                             print(f"outlier values in {fe} handled ZScoreOutlier ")
                         else :
                             print("invalid feature !!!")
@@ -105,7 +108,7 @@ def main():
                     if ch == 1 :
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
-                            print(analyzer.analyze_mean(fe))
+                            print(analyzer.analyze_mean(fe.lower()))
                         else :
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
@@ -114,7 +117,7 @@ def main():
                     elif ch == 2 :
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
-                            print(analyzer.analyze_median(fe))
+                            print(analyzer.analyze_median(fe.lower()))
                         else :
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
@@ -123,7 +126,7 @@ def main():
                     elif ch == 3 :
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
-                            print(analyzer.analyze_maximum(fe))
+                            print(analyzer.analyze_maximum(fe.lower()))
                         else :
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
@@ -132,7 +135,7 @@ def main():
                     elif ch == 4 :
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
-                            print(analyzer.analyze_minimum(fe))
+                            print(analyzer.analyze_minimum(fe.lower()))
                         else :
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
@@ -141,7 +144,7 @@ def main():
                     elif ch == 5 :
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
-                            print(analyzer.analyze_varians(fe))
+                            print(analyzer.analyze_varians(fe.lower()))
                         else :
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
@@ -150,7 +153,7 @@ def main():
                     elif ch == 6 :
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
-                            print(analyzer.analyze_standarad_deviation(fe))
+                            print(analyzer.analyze_standarad_deviation(fe.lower()))
                         else :
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
@@ -159,7 +162,7 @@ def main():
                     elif ch == 7 :
                         fe = input("enter your feature : ").strip()
                         if fe.lower() in features :
-                            print(analyzer.analyze_mode(fe))
+                            print(analyzer.analyze_mode(fe.lower()))
                         else :
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
@@ -227,23 +230,32 @@ def main():
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             break
-            elif n == 1 :
+            elif n == 4 :
                 datavisualizer = Datavisualizer(loader.track_list)
                 while(True) :
                     print("pleas choose one of this items that you want : \n1 . Box plot designing (one feature) \n2 . Scatter plot designing (for two feature) \n3 . Correlation matrix designing or Heatmap (all features)")
                     ch = int(input("pleas enter your choice (1 - 3) : ").strip())
                     if ch == 1 :
-                        title = input("pleas enter your the title : ").strip()
+                        title = input("pleas enter your the title (before / after __ cleaning dataset by using '{}' )" ).strip()
                         fe = input("enter your feature : ").strip().lower()
-                        datavisualizer.boxplot(title , fe)
+                        if fe.lower() in features :
+                            datavisualizer.boxplot(title , fe.lower())
+                        else :
+                            print("invalid feature !")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             break
                     elif ch == 3 :
                         fe = []
                         m = int(input("enter the features that you want to design a correlation matrix for them : "))
-                        for i in range(m):
-                            fe.append(input(f"* feature {i+1} : "))
+                        c = 0
+                        while(c <= m):
+                            f = input(f"* feature {c+1} : ")
+                            if f.lower() in features :
+                                fe.append(f.lower())
+                                c += 1
+                            else :
+                                print("invalid feature ! ")
                         datavisualizer.plot_correlation_matrix(fe)
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
@@ -253,7 +265,10 @@ def main():
                         data_v = Datavisualizer(r_list)
                         f1 = input("enter first feature : ").strip()
                         f2 = input("enter second feature : ").strip()
-                        data_v.scatterplot(f1 , f2)
+                        if f1.lower() in features and f2.lower() in features :
+                            data_v.scatterplot(f1.lower() , f2.lower())
+                        else :
+                            print("invalid features ! ")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             break
@@ -290,7 +305,7 @@ acousticness, instrumentalness, liveness, valence, tempo, time_signature,
 track_genre)
                 loader.append_track(new_song)
                 sa = input("do you want to save changes in last output file ? (y/n) : ")
-                if ex in ["y","yes","Yes"]: 
+                if sa in ["y","yes","Yes"]: 
                     loader.save_data()
                 ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                 if ex in ["y","yes","Yes"]:
