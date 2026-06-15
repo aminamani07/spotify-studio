@@ -24,14 +24,15 @@ def main():
         print("loading... pleas wait...")
         loader = Data_loader(f_path)
         loader.read_data()
-        print(f"load sucsessfull ... we can load {len(loader.track_list)} track from your file . ")
+        print(f"load sucsessfull ... we could load {len(loader.track_list)} track from your file . ")
         print("================================\n*** WELCOM TO SPOTIFY STUDIO ***\n=====================================\n")
         pygame.mixer.init()
         pygame.mixer.music.load("sound.mp3")
         pygame.mixer.music.play(-1) #repeat when it music time finish
         while(True):
+            clear_terminal()
             try :
-                print("pleas choose one of these items : \n1 . handle missing values (imputation)\n2 . handle outliers (clipping)\n3 . display statistical summary\n4 . data stroytelling & visualization\n5 . add a new track to dataset\n6 . reset dataset (reload original data)\n7 . save & exit")
+                print("pleas choose one of these items : \n1 . handle missing values (imputation)\n2 . handle outliers (clipping)\n3 . display statistical summary\n4 . data stroytelling & visualization\n5 . add a new track to dataset\n6 . reset dataset (reload original data)\n7 . save \n8 . exit \n")
                 n = int(input("\nyour choice (1 - 7) : ").strip())
                 print("-" * 40)
             except ValueError as e :
@@ -41,11 +42,18 @@ def main():
                 loader.save_data()
                 st = input("do you want to exit ? (y/n) : ")
                 if st in ["y","yes","Y"]:
-                    print("goodbye dear ... nice to see you . ")
+                    clear_terminal()
+                    print("goodbye dear ... nice to see you . \n")
                     pygame.mixer.music.stop()
                     break
+            elif n == 8 :
+                clear_terminal()
+                print("goodbye dear ... nice to see you . ")
+                pygame.mixer.music.stop()
+                break
             elif n == 1 :
                 while(True) :
+                    clear_terminal()
                     try :
                         print("pleas choose one of this items that you want : \n1 . fulling missing values with using Mean (one feature) \n2 . fulling missing values with using Median (one feature) \n3 . fulling missing values with using LNN or machine learing (all features)")
                         ch = int(input("pleas enter your choice (1 - 3) : ").strip())
@@ -73,6 +81,7 @@ def main():
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     elif ch == 3 :
                         imputer = KNNImputer()
@@ -80,14 +89,17 @@ def main():
                         print(f"missing values replaced using KNN and machine learing")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     else :
                         print("invalid choice ... pleas try again . ")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
             elif n == 2 :
                 while(True) :
+                    clear_terminal()
                     try :
                         print("pleas choose one of this items that you want : \n1 . handling outlier values with using IQROutlier (one feature) \n2 . handling outlier values with using ZScoreOutlier (one feature) ")
                         ch = int(input("pleas enter your choice (1 - 2) : ").strip())
@@ -104,6 +116,7 @@ def main():
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     elif ch == 2 :
                         fe = input("enter your feature : ").strip()
@@ -115,15 +128,18 @@ def main():
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     else :
                         print("invalid choice ... pleas try again . ")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
             elif n == 3 :
                 analyzer = Dataanalyzer(loader.track_list)
                 while(True) :
+                    clear_terminal()
                     try :
                         print("pleas choose one of this items : \n1 . Mean (one feature) \n2 . Median (one feature) \n3 . Maximum (one feature) \n4 . Minimum (one feature) \n5 . Varians (one feature) \n6 . Standard_Divation (one feature) \n7 . Mode (one feature) \n8 . Filter by artist \n9 . Filter by genre \n10 . Get top tracks (in one feature) \n11 . Recommend (in one feature) ")
                         ch = int(input("pleas enter your choice (1 - 11) : ").strip())
@@ -138,6 +154,7 @@ def main():
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     elif ch == 2 :
                         fe = input("enter your feature : ").strip()
@@ -147,6 +164,7 @@ def main():
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     elif ch == 3 :
                         fe = input("enter your feature : ").strip()
@@ -156,6 +174,7 @@ def main():
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     elif ch == 4 :
                         fe = input("enter your feature : ").strip()
@@ -165,6 +184,7 @@ def main():
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     elif ch == 5 :
                         fe = input("enter your feature : ").strip()
@@ -174,6 +194,7 @@ def main():
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     elif ch == 6 :
                         fe = input("enter your feature : ").strip()
@@ -183,6 +204,7 @@ def main():
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     elif ch == 7 :
                         fe = input("enter your feature : ").strip()
@@ -192,6 +214,7 @@ def main():
                             print("invalid feature !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     elif ch == 8 :
                         artist = input("enter your artist : ").strip().lower()
@@ -205,6 +228,7 @@ def main():
                                 print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     elif ch == 9 :
                         genre = input("enter your genre : ").strip().lower()
@@ -218,6 +242,7 @@ def main():
                                 print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     elif ch == 10 :
                         fe = input("enter your feature : ").strip().lower()
@@ -231,6 +256,7 @@ def main():
                                 print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     elif ch == 11 :
                         fe = input("enter your feature : ").strip().lower()
@@ -242,22 +268,25 @@ def main():
                                 l = analyzer.recommend(fe , m , r)
                                 break
                         if l :
-                            print("______results______")
+                            print("____________________________RESULTS_____________________________")
                             for id , song in enumerate(l , 1):
                                 print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
                         else :
                             print("No tracks found !")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     else :
                         print("invalid choice ... pleas try again . ")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
             elif n == 4 :
                 datavisualizer = Datavisualizer(loader.track_list)
                 while(True) :
+                    clear_terminal()
                     try :
                         print("pleas choose one of this items that you want : \n1 . Box plot designing (one feature) \n2 . Scatter plot designing (for two feature) \n3 . Correlation matrix designing or Heatmap (all features)\n4 . Wordcloud plot (one feature (str))")
                         ch = int(input("pleas enter your choice (1 - 4) : ").strip())
@@ -265,7 +294,7 @@ def main():
                         print(e)
                         ch = 5
                     if ch == 1 :
-                        title = input("pleas enter your the title (before / after __ cleaning dataset by using '{}' )" ).strip()
+                        title = input("pleas enter your the title (before / after __ cleaning dataset by using '{}' ) : " ).strip()
                         fe = input("enter your feature : ").strip().lower()
                         if fe.lower() in features :
                             datavisualizer.boxplot(title , fe.lower())
@@ -273,6 +302,7 @@ def main():
                             print("invalid feature !")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     elif ch == 3 :
                         fe = []
@@ -288,6 +318,7 @@ def main():
                         datavisualizer.plot_correlation_matrix(fe)
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     elif ch == 2 :
                         r_list = random.sample(loader.track_list , 1000)
@@ -300,6 +331,7 @@ def main():
                             print("invalid features ! ")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     elif ch == 4 :
                         fe = input("enter your feature : ").strip().lower()
@@ -309,13 +341,16 @@ def main():
                             print("invalid feature name !!!")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
                     else :
                         print("invalid choice ... pleas try again . ")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
+                            clear_terminal()
                             break
             elif n == 5 :
+                clear_terminal()
                 try :
                     print("okkk , now its time the enter your your track variables (20 variable) ... one by one . ")
                     track_id = input("enter your track id : ").strip()
@@ -345,10 +380,12 @@ def main():
                     loader.append_track(new_song)
                     sa = input("do you want to save changes in last output file ? (y/n) : ")
                     if sa in ["y","yes","Yes"]: 
+                        clear_terminal()
                         loader.save_data()
                 except ValueError as e :
                     print(e)
             elif n == 6 :
+                clear_terminal()
                 loader.reset_data()
             else :
                 print("invalid number ... pleas try again ... ")
@@ -356,5 +393,6 @@ def main():
 
 
 if __name__ == "__main__" :
-    
+    clear_terminal()
     main()
+    clear_terminal()
