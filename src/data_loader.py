@@ -1,5 +1,5 @@
 import csv
-from song import Song
+from src.song import Song
 class Data_loader :
     def __init__(self , file_path):
         self.file_path = file_path

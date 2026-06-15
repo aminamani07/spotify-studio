@@ -1,8 +1,8 @@
 class Song :
     def __init__(self , track_id, artists, album_name, track_name, popularity, duration_ms,
-explicit, danceability, energy, key, loudness, mode, speechiness,
-acousticness, instrumentalness, liveness, valence, tempo, time_signature,
-track_genre):
+                explicit, danceability, energy, key, loudness, mode, speechiness,
+                acousticness, instrumentalness, liveness, valence, tempo, time_signature,
+                track_genre):
         self.track_id = track_id
         self.artists = artists
         self.album_name = album_name
@@ -16,7 +16,7 @@ track_genre):
         self.time_signature = time_signature
         self.track_genre = track_genre
         self.speechiness = speechiness
-        self.acoustisness = acousticness
+        self.acousticness = acousticness
         self.instrumentalness = instrumentalness
         self.liveness = liveness
         self.valence = valence
@@ -54,7 +54,8 @@ track_genre):
         if value is None or value == "":
             self._energy = 0.0 
             return
-        if not (0 <= float(value) <= 100):
+        if not (0.0 <= float(value) <= 1.0):
             raise ValueError(f"Energy error : value '{value}' must be between 0.0 and 1.0 . ")
         self._energy = float(value)
-    
+
+
