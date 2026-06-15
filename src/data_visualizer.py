@@ -46,6 +46,8 @@ class Datavisualizer :
         plt.xlabel(feature_x)
         plt.ylabel(feature_y)
         plt.legend(handles=scatter.legend_elements()[0], labels=u_genres , title="Genres")
+        plt.setp(plt.gca().get_legend() , bbox_to_anchor=(1.05 , 1))
+        plt.tight_layout()
         plt.show()
     def plot_correlation_matrix(self , features):
         n = len(features)
@@ -90,7 +92,7 @@ class Datavisualizer :
         
         plt.title("Audio Features Correlation Matrix", pad=20)
         plt.tight_layout()
-        plt.show()
+        fig.show()
     def plot_wordcloud(self , feature_name):
         txt = " ".join([getattr(r , feature_name , "") for r in self.track_list])
         wc = WordCloud(width=800 , height=400,background_color='white').generate(txt)

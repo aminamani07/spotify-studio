@@ -28,7 +28,7 @@ def main():
         loader = Data_loader(f_path)
         loader.read_data()
         print(f"load sucsessfull ... we could load {len(loader.track_list)} track from your file . \n")
-        print("================================\n*** WELCOM TO SPOTIFY STUDIO ***\n=====================================\n")
+        print("==================================\n*** WELCOM TO SPOTIFY STUDIO ***\n=====================================\n")
         while(True):
             clear_terminal()
             try :
