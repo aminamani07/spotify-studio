@@ -7,6 +7,10 @@ from src.data_analyzer import Dataanalyzer
 from src.data_visualizer import Datavisualizer
 from src.data_cleaner import MeanImputer , MedianImputer , KNNImputer , BaseImputer , BaseOutlierHandler , ZScoreOutlierHandler , IQROutlierHandler
 
+
+def clear_terminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 def main():
     features = ["track_id" , "artists", "album_name" , "track_name", "popularity", "duration_ms",
 "explicit" , "danceability" , "energy", "key", "loudness", "mode", "speechiness",
@@ -352,4 +356,5 @@ def main():
 
 
 if __name__ == "__main__" :
+    
     main()
