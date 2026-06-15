@@ -14,7 +14,7 @@ class Dataanalyzer :
                 continue
         nt2 = np.array(t2)
         return_val = np.mean(nt2)
-        return return_val
+        return f"Mean : {return_val}\n"
     def analyze_median(self , feature_name) :
         t2 = []
         for r in self.track_list :
@@ -25,7 +25,7 @@ class Dataanalyzer :
                 continue
         nt2 = np.array(t2)
         return_val = np.median(nt2)
-        return return_val
+        return f"Median : {return_val}\n"
     def analyze_maximum(self , feature_name) :
         t2 = []
         for r in self.track_list :
@@ -36,7 +36,7 @@ class Dataanalyzer :
                 continue
         nt2 = np.array(t2)
         return_val = np.amax(nt2)
-        return return_val
+        return f"Maximnm : {return_val}\n"
     def analyze_minimum(self , feature_name) :
         t2 = []
         for r in self.track_list :
@@ -47,7 +47,7 @@ class Dataanalyzer :
                 continue
         nt2 = np.array(t2)
         return_val = np.amin(nt2)
-        return return_val
+        return f"Minimnm : {return_val}\n"
     def analyze_varians(self , feature_name) :
         t2 = []
         for r in self.track_list :
@@ -58,7 +58,7 @@ class Dataanalyzer :
                 continue
         nt2 = np.array(t2)
         return_val = np.var(nt2)
-        return return_val
+        return f"Varians : {return_val}\n"
     def analyze_standarad_deviation(self , feature_name) :
         t2 = []
         for r in self.track_list :
@@ -69,7 +69,7 @@ class Dataanalyzer :
                 continue
         nt2 = np.array(t2)
         return_val = np.std(nt2)
-        return return_val
+        return f"Standard Deviation : {return_val}\n"
     def analyze_mode(self , feature_name) :
         t2 = []
         for r in self.track_list :
@@ -80,7 +80,7 @@ class Dataanalyzer :
                 continue
         counter = Counter(t2)
         return_val = counter.most_common(1)[0][0]
-        return return_val
+        return f"Mode : {return_val}\n"
     def filter_by_artist(self , atrists , n ):
         t2 = []
         for r in self.track_list :

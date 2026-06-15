@@ -18,17 +18,17 @@ def main():
 "track_genre"]
     f_path = "data/dataset.csv"
     if not os.path.exists(f_path):
-        print(f"file {f_path} doesn't exist")
+        print(f"file {f_path} doesn't exist\n")
         return 
     else :
-        print("loading... pleas wait...")
-        loader = Data_loader(f_path)
-        loader.read_data()
-        print(f"load sucsessfull ... we could load {len(loader.track_list)} track from your file . ")
-        print("================================\n*** WELCOM TO SPOTIFY STUDIO ***\n=====================================\n")
         pygame.mixer.init()
         pygame.mixer.music.load("sound.mp3")
         pygame.mixer.music.play(-1) #repeat when it music time finish
+        print("loading... pleas wait...\n")
+        loader = Data_loader(f_path)
+        loader.read_data()
+        print(f"load sucsessfull ... we could load {len(loader.track_list)} track from your file . \n")
+        print("================================\n*** WELCOM TO SPOTIFY STUDIO ***\n=====================================\n")
         while(True):
             clear_terminal()
             try :
@@ -48,14 +48,14 @@ def main():
                     break
             elif n == 8 :
                 clear_terminal()
-                print("goodbye dear ... nice to see you . ")
+                print("goodbye dear ... nice to see you . \n")
                 pygame.mixer.music.stop()
                 break
             elif n == 1 :
                 while(True) :
                     clear_terminal()
                     try :
-                        print("pleas choose one of this items that you want : \n1 . fulling missing values with using Mean (one feature) \n2 . fulling missing values with using Median (one feature) \n3 . fulling missing values with using LNN or machine learing (all features)")
+                        print("pleas choose one of this items that you want : \n1 . fulling missing values with using Mean (one feature) \n2 . fulling missing values with using Median (one feature) \n3 . fulling missing values with using LNN or machine learing (all features)\n")
                         ch = int(input("pleas enter your choice (1 - 3) : ").strip())
                     except ValueError as e :
                         print(e)
@@ -65,9 +65,9 @@ def main():
                         if fe.lower() in features :
                             imputer = MeanImputer()
                             imputer.impute(loader.track_list , fe.lower())
-                            print(f"missing values in {fe} replaced using Mean")
+                            print(f"missing values in {fe} replaced using Mean\n")
                         else :
-                            print("invalid feature !!!")
+                            print("invalid feature !!!\n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             break
@@ -76,9 +76,9 @@ def main():
                         if fe.lower() in features :
                             imputer = MedianImputer()
                             imputer.impute(loader.track_list , fe.lower())
-                            print(f"missing values in {fe} replaced using Median")
+                            print(f"missing values in {fe} replaced using Median\n")
                         else :
-                            print("invalid feature !!!")
+                            print("invalid feature !!!\n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -86,13 +86,13 @@ def main():
                     elif ch == 3 :
                         imputer = KNNImputer()
                         imputer.impute(loader.track_list)
-                        print(f"missing values replaced using KNN and machine learing")
+                        print(f"missing values replaced using KNN and machine learing\n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
                             break
                     else :
-                        print("invalid choice ... pleas try again . ")
+                        print("invalid choice ... pleas try again . \n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -101,7 +101,7 @@ def main():
                 while(True) :
                     clear_terminal()
                     try :
-                        print("pleas choose one of this items that you want : \n1 . handling outlier values with using IQROutlier (one feature) \n2 . handling outlier values with using ZScoreOutlier (one feature) ")
+                        print("pleas choose one of this items that you want : \n1 . handling outlier values with using IQROutlier (one feature) \n2 . handling outlier values with using ZScoreOutlier (one feature) \n")
                         ch = int(input("pleas enter your choice (1 - 2) : ").strip())
                     except ValueError as e :
                         ch = 3
@@ -111,9 +111,9 @@ def main():
                         if fe.lower() in features :
                             handle = IQROutlierHandler()
                             handle.handle(loader.track_list , fe.lower())
-                            print(f"outlier values in {fe} handled IQROutlier ")
+                            print(f"outlier values in {fe} handled IQROutlier \n")
                         else :
-                            print("invalid feature !!!")
+                            print("invalid feature !!!\n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -123,15 +123,15 @@ def main():
                         if fe.lower() in features :
                             handle = ZScoreOutlierHandler()
                             handle.handle(loader.track_list , fe.lower())
-                            print(f"outlier values in {fe} handled ZScoreOutlier ")
+                            print(f"outlier values in {fe} handled ZScoreOutlier \n")
                         else :
-                            print("invalid feature !!!")
+                            print("invalid feature !!!\n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
                             break
                     else :
-                        print("invalid choice ... pleas try again . ")
+                        print("invalid choice ... pleas try again . \n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -141,7 +141,7 @@ def main():
                 while(True) :
                     clear_terminal()
                     try :
-                        print("pleas choose one of this items : \n1 . Mean (one feature) \n2 . Median (one feature) \n3 . Maximum (one feature) \n4 . Minimum (one feature) \n5 . Varians (one feature) \n6 . Standard_Divation (one feature) \n7 . Mode (one feature) \n8 . Filter by artist \n9 . Filter by genre \n10 . Get top tracks (in one feature) \n11 . Recommend (in one feature) ")
+                        print("pleas choose one of this items : \n1 . Mean (one feature) \n2 . Median (one feature) \n3 . Maximum (one feature) \n4 . Minimum (one feature) \n5 . Varians (one feature) \n6 . Standard_Divation (one feature) \n7 . Mode (one feature) \n8 . Filter by artist \n9 . Filter by genre \n10 . Get top tracks (in one feature) \n11 . Recommend (in one feature) \n")
                         ch = int(input("pleas enter your choice (1 - 11) : ").strip())
                     except ValueError as e :
                         print(e)
@@ -151,7 +151,7 @@ def main():
                         if fe.lower() in features :
                             print(analyzer.analyze_mean(fe.lower()))
                         else :
-                            print("invalid feature !!!")
+                            print("invalid feature !!!\n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -161,7 +161,7 @@ def main():
                         if fe.lower() in features :
                             print(analyzer.analyze_median(fe.lower()))
                         else :
-                            print("invalid feature !!!")
+                            print("invalid feature !!!\n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -171,7 +171,7 @@ def main():
                         if fe.lower() in features :
                             print(analyzer.analyze_maximum(fe.lower()))
                         else :
-                            print("invalid feature !!!")
+                            print("invalid feature !!!\n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -181,7 +181,7 @@ def main():
                         if fe.lower() in features :
                             print(analyzer.analyze_minimum(fe.lower()))
                         else :
-                            print("invalid feature !!!")
+                            print("invalid feature !!!\n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -191,7 +191,7 @@ def main():
                         if fe.lower() in features :
                             print(analyzer.analyze_varians(fe.lower()))
                         else :
-                            print("invalid feature !!!")
+                            print("invalid feature !!!\n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -201,7 +201,7 @@ def main():
                         if fe.lower() in features :
                             print(analyzer.analyze_standarad_deviation(fe.lower()))
                         else :
-                            print("invalid feature !!!")
+                            print("invalid feature !!!\n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -211,7 +211,7 @@ def main():
                         if fe.lower() in features :
                             print(analyzer.analyze_mode(fe.lower()))
                         else :
-                            print("invalid feature !!!")
+                            print("invalid feature !!!\n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -221,9 +221,9 @@ def main():
                         m = int(input("enter the number of tracks you want : ").strip())
                         l = analyzer.filter_by_artist(artist , m)
                         if not l :
-                            print("No tracks found !")
+                            print("No tracks found !\n")
                         else :
-                            print("______results______")
+                            print("___________________________RESULTS_____________________________")
                             for id , song in enumerate(l , 1):
                                 print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
@@ -235,9 +235,9 @@ def main():
                         m = int(input("enter the number of tracks you want : ").strip())
                         l = analyzer.filter_by_genre(genre , m)
                         if not l :
-                            print("No tracks found !")
+                            print("No tracks found !\n")
                         else :
-                            print("______results______")
+                            print("________________________RESULTS____________________________")
                             for id , song in enumerate(l , 1):
                                 print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
@@ -249,9 +249,9 @@ def main():
                         m = int(input("enter the number of tracks you want : ").strip())
                         l = analyzer.get_top_tracks(fe , m)
                         if not l :
-                            print("No tracks found !")
+                            print("No tracks found !\n")
                         else :
-                            print("______results______")
+                            print("_____________________________RESULTS________________________________")
                             for id , song in enumerate(l , 1):
                                 print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
@@ -272,13 +272,13 @@ def main():
                             for id , song in enumerate(l , 1):
                                 print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
                         else :
-                            print("No tracks found !")
+                            print("No tracks found !\n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
                             break
                     else :
-                        print("invalid choice ... pleas try again . ")
+                        print("invalid choice ... pleas try again . \n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -288,7 +288,7 @@ def main():
                 while(True) :
                     clear_terminal()
                     try :
-                        print("pleas choose one of this items that you want : \n1 . Box plot designing (one feature) \n2 . Scatter plot designing (for two feature) \n3 . Correlation matrix designing or Heatmap (all features)\n4 . Wordcloud plot (one feature (str))")
+                        print("pleas choose one of this items that you want : \n1 . Box plot designing (one feature) \n2 . Scatter plot designing (for two feature) \n3 . Correlation matrix designing or Heatmap (all features)\n4 . Wordcloud plot (one feature (str))\n")
                         ch = int(input("pleas enter your choice (1 - 4) : ").strip())
                     except ValueError as e :
                         print(e)
@@ -299,7 +299,7 @@ def main():
                         if fe.lower() in features :
                             datavisualizer.boxplot(title , fe.lower())
                         else :
-                            print("invalid feature !")
+                            print("invalid feature !\n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -314,7 +314,7 @@ def main():
                                 fe.append(f.lower())
                                 c += 1
                             else :
-                                print("invalid feature ! ")
+                                print("invalid feature ! \n")
                         datavisualizer.plot_correlation_matrix(fe)
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
@@ -328,7 +328,7 @@ def main():
                         if f1.lower() in features and f2.lower() in features :
                             data_v.scatterplot(f1.lower() , f2.lower())
                         else :
-                            print("invalid features ! ")
+                            print("invalid features ! \n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -338,13 +338,13 @@ def main():
                         if fe.lower() in features :
                             datavisualizer.plot_wordcloud(fe.lower())
                         else :
-                            print("invalid feature name !!!")
+                            print("invalid feature name !!!\n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
                             break
                     else :
-                        print("invalid choice ... pleas try again . ")
+                        print("invalid choice ... pleas try again . \n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -352,7 +352,7 @@ def main():
             elif n == 5 :
                 clear_terminal()
                 try :
-                    print("okkk , now its time the enter your your track variables (20 variable) ... one by one . ")
+                    print("okkk , now its time the enter your your track variables (20 variable) ... one by one . \n")
                     track_id = input("enter your track id : ").strip()
                     artists = input("enter your track artist : ").strip()
                     album_name = input("enter your track album_name : ").strip()
@@ -383,12 +383,12 @@ def main():
                         clear_terminal()
                         loader.save_data()
                 except ValueError as e :
-                    print(e)
+                    print(e,"\n")
             elif n == 6 :
                 clear_terminal()
                 loader.reset_data()
             else :
-                print("invalid number ... pleas try again ... ")
+                print("invalid number ... pleas try again ... \n")
 
 
 
