@@ -38,10 +38,7 @@ class Datavisualizer :
             tx.append(float(i))
             ty.append(float(j))
             genres.append(g)
-        top_genres = [
-            genre for genre, count
-            in Counter(genres).most_common(10)
-        ]
+        top_genres = [genre for genre, count in Counter(genres).most_common(10)]
         filtered_tx = []
         filtered_ty = []
         filtered_genres = []
@@ -59,8 +56,7 @@ class Datavisualizer :
         plt.xlabel(feature_x)
         plt.ylabel(feature_y)
         plt.legend(handles=scatter.legend_elements()[0],labels=u_genres,title="Genres")
-        plt.setp(
-        plt.gca().get_legend(),bbox_to_anchor=(1.05, 1))
+        plt.setp(plt.gca().get_legend(),bbox_to_anchor=(1.05, 1))
         plt.tight_layout()
         plt.show()
     def plot_correlation_matrix(self , features):
