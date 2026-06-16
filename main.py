@@ -11,11 +11,24 @@ from src.data_cleaner import MeanImputer , MedianImputer , KNNImputer , BaseImpu
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def main():
-    features = ["track_id" , "artists", "album_name" , "track_name", "popularity", "duration_ms",
+
+features = ["track_id" , "artists", "album_name" , "track_name", "popularity", "duration_ms",
 "explicit" , "danceability" , "energy", "key", "loudness", "mode", "speechiness",
 "acousticness", "instrumentalness", "liveness", "valence", "tempo", "time_signature",
 "track_genre"]
+
+def feature_menu():
+    for ind , fe in enumerate(features) :
+        print(f"{ind + 1} . {fe}")
+    print("\n")
+    inte = int(input("enter your choice (1 - 20) : ").strip())
+    print("\n")
+    if 1 <= inte <= 20 :
+        return features[inte - 1]
+    else :
+        return "none"
+
+def main():
     f_path = "data/dataset.csv"
     if not os.path.exists(f_path):
         print(f"file {f_path} doesn't exist\n")
@@ -61,7 +74,8 @@ def main():
                         print(e)
                         ch = 5
                     if ch == 1 :
-                        fe = input("enter your feature : ").strip()
+                        fe = feature_menu()
+                        clear_terminal()
                         if fe.lower() in features :
                             imputer = MeanImputer()
                             imputer.impute(loader.track_list , fe.lower())
@@ -72,7 +86,8 @@ def main():
                         if ex in ["y","yes","Yes"]:
                             break
                     elif ch == 2 :
-                        fe = input("enter your feature : ").strip()
+                        fe = feature_menu()
+                        clear_terminal()
                         if fe.lower() in features :
                             imputer = MedianImputer()
                             imputer.impute(loader.track_list , fe.lower())
@@ -107,7 +122,8 @@ def main():
                         ch = 3
                         print(e)
                     if ch == 1 :
-                        fe = input("enter your feature : ").strip()
+                        fe = feature_menu()
+                        clear_terminal()
                         if fe.lower() in features :
                             handle = IQROutlierHandler()
                             handle.handle(loader.track_list , fe.lower())
@@ -119,7 +135,8 @@ def main():
                             clear_terminal()
                             break
                     elif ch == 2 :
-                        fe = input("enter your feature : ").strip()
+                        fe = feature_menu()
+                        clear_terminal()
                         if fe.lower() in features :
                             handle = ZScoreOutlierHandler()
                             handle.handle(loader.track_list , fe.lower())
@@ -147,7 +164,8 @@ def main():
                         print(e)
                         ch = 14
                     if ch == 1 :
-                        fe = input("enter your feature : ").strip()
+                        fe = feature_menu()
+                        clear_terminal()
                         if fe.lower() in features :
                             print(analyzer.analyze_mean(fe.lower()))
                         else :
@@ -157,7 +175,8 @@ def main():
                             clear_terminal()
                             break
                     elif ch == 2 :
-                        fe = input("enter your feature : ").strip()
+                        fe = feature_menu()
+                        clear_terminal()
                         if fe.lower() in features :
                             print(analyzer.analyze_median(fe.lower()))
                         else :
@@ -167,7 +186,8 @@ def main():
                             clear_terminal()
                             break
                     elif ch == 3 :
-                        fe = input("enter your feature : ").strip()
+                        fe = feature_menu()
+                        clear_terminal()
                         if fe.lower() in features :
                             print(analyzer.analyze_maximum(fe.lower()))
                         else :
@@ -177,7 +197,8 @@ def main():
                             clear_terminal()
                             break
                     elif ch == 4 :
-                        fe = input("enter your feature : ").strip()
+                        fe = feature_menu()
+                        clear_terminal()
                         if fe.lower() in features :
                             print(analyzer.analyze_minimum(fe.lower()))
                         else :
@@ -187,7 +208,8 @@ def main():
                             clear_terminal()
                             break
                     elif ch == 5 :
-                        fe = input("enter your feature : ").strip()
+                        fe = feature_menu()
+                        clear_terminal()
                         if fe.lower() in features :
                             print(analyzer.analyze_varians(fe.lower()))
                         else :
@@ -197,7 +219,8 @@ def main():
                             clear_terminal()
                             break
                     elif ch == 6 :
-                        fe = input("enter your feature : ").strip()
+                        fe = feature_menu()
+                        clear_terminal()
                         if fe.lower() in features :
                             print(analyzer.analyze_standarad_deviation(fe.lower()))
                         else :
@@ -207,7 +230,8 @@ def main():
                             clear_terminal()
                             break
                     elif ch == 7 :
-                        fe = input("enter your feature : ").strip()
+                        fe = feature_menu()
+                        clear_terminal()
                         if fe.lower() in features :
                             print(analyzer.analyze_mode(fe.lower()))
                         else :
@@ -219,6 +243,7 @@ def main():
                     elif ch == 8 :
                         artist = input("enter your artist : ").strip().lower()
                         m = int(input("enter the number of tracks you want : ").strip())
+                        clear_terminal()
                         l = analyzer.filter_by_artist(artist , m)
                         if not l :
                             print("No tracks found !\n")
@@ -233,6 +258,7 @@ def main():
                     elif ch == 9 :
                         genre = input("enter your genre : ").strip().lower()
                         m = int(input("enter the number of tracks you want : ").strip())
+                        clear_terminal()
                         l = analyzer.filter_by_genre(genre , m)
                         if not l :
                             print("No tracks found !\n")
@@ -245,8 +271,9 @@ def main():
                             clear_terminal()
                             break
                     elif ch == 10 :
-                        fe = input("enter your feature : ").strip().lower()
+                        fe = feature_menu()
                         m = int(input("enter the number of tracks you want : ").strip())
+                        clear_terminal()
                         l = analyzer.get_top_tracks(fe , m)
                         if not l :
                             print("No tracks found !\n")
@@ -259,9 +286,10 @@ def main():
                             clear_terminal()
                             break
                     elif ch == 11 :
-                        fe = input("enter your feature : ").strip().lower()
+                        fe = feature_menu()
                         m = int(input("enter the number of tracks you want : ").strip())
                         t_name = input("enter your track name : ").strip()
+                        clear_terminal()
                         l = []
                         for r in loader.track_list :
                             if getattr(r , "track_name") == t_name :
@@ -295,7 +323,8 @@ def main():
                         ch = 5
                     if ch == 1 :
                         title = input("pleas enter your the title (before / after __ cleaning dataset by using '{}' ) : " ).strip()
-                        fe = input("enter your feature : ").strip().lower()
+                        fe = feature_menu()
+                        clear_terminal()
                         if fe.lower() in features :
                             datavisualizer.boxplot(title , fe.lower())
                         else :
@@ -306,10 +335,12 @@ def main():
                             break
                     elif ch == 3 :
                         fe = []
-                        m = int(input("enter the features that you want to design a correlation matrix for them : "))
+                        m = int(input("enter the number of features that you want to design a correlation matrix for them : "))
                         c = 0
                         while(c < m):
-                            f = input(f"* feature {c+1} : ")
+                            print(f"feature {c + 1}")
+                            f = feature_menu()
+                            clear_terminal()
                             if f.lower() in features :
                                 fe.append(f.lower())
                                 c += 1
@@ -321,12 +352,16 @@ def main():
                             clear_terminal()
                             break
                     elif ch == 2 :
-                        r_list = random.sample(loader.track_list , 1000)
-                        data_v = Datavisualizer(r_list)
-                        f1 = input("enter first feature : ").strip()
-                        f2 = input("enter second feature : ").strip()
+                        #r_list = random.sample(loader.track_list , 1000)
+                        #data_v = Datavisualizer(r_list)
+                        print("first feature : ")
+                        f1 = feature_menu()
+                        clear_terminal()
+                        print("second feature : ")
+                        f2 = feature_menu()
+                        clear_terminal()
                         if f1.lower() in features and f2.lower() in features :
-                            data_v.scatterplot(f1.lower() , f2.lower())
+                            datavisualizer.scatterplot(f1.lower() , f2.lower())
                         else :
                             print("invalid features ! \n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
@@ -334,7 +369,8 @@ def main():
                             clear_terminal()
                             break
                     elif ch == 4 :
-                        fe = input("enter your feature : ").strip().lower()
+                        fe = feature_menu()
+                        clear_terminal()
                         if fe.lower() in features :
                             datavisualizer.plot_wordcloud(fe.lower())
                         else :
@@ -395,4 +431,4 @@ def main():
 if __name__ == "__main__" :
     clear_terminal()
     main()
-    clear_terminal()
+    
