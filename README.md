@@ -3,7 +3,7 @@ This is my second AP course  project as an individual in the second semester at 
 
 <img width="950" height="500" alt="image" src="https://github.com/user-attachments/assets/86f9409e-9592-4cae-a49a-e9511ac581e3" />
 
-######################################################################################################
+#####################################################################################################
 #                                                                              #
 # 🎵 SPOTIFY DATA STUDIO                                                       #
 # Advanced Interactive Music Data Refinement & Analytics Toolkit               #
@@ -54,6 +54,7 @@ The main executable engine (main.py) is purposefully kept outside the source
 ### 1. Robust Data Encapsulation (song.py)
 ------------------------------------------
 • Strictly manages song attributes via Python @property decorators.
+
 • Implements hard validation guards for core metrics (e.g., popularity, 
   danceability, and energy must fall within legal analytical thresholds).
 
@@ -61,6 +62,7 @@ The main executable engine (main.py) is purposefully kept outside the source
 ----------------------------------------------------------
 • Missing Value Imputation: Implements custom fallback engines including 
   MeanImputer, MedianImputer, and multi-attribute KNNImputer.
+  
 • Outlier Mitigation: Prevents analytical skewing using IQROutlierHandler 
   (Interquartile Range) and ZScoreOutlierHandler boundaries to clamp extreme 
   variations.
@@ -69,14 +71,18 @@ The main executable engine (main.py) is purposefully kept outside the source
 --------------------------------------------------------------------------
 • Computes exact descriptive statistics (Mean, Median, Min, Max) bypassing 
   missing entries safely.
+  
 • Offers deep-filtering constraints by specific artists or genres.
+
 • Built-in content-based proximity metric to recommend similar tracks based on 
   numeric audio profiles.
 
 ### 4. Interactive Data Visualization (data_visualizer.py)
 ----------------------------------------------------------
 • Generates clear, publication-grade distribution visualizers (Box Plots for pre/after cleaning comparisons).
+
 • Creates automated feature relations using Scatter Plots.
+
 • Computes full Audio Feature Correlation Matrices rendered with dynamic coolwarm heatmaps and clean text annotations.
 
 ================================================================================
@@ -103,9 +109,11 @@ instead of raw linear scripting:
 
 • ENCAPSULATION: Hidden data states protected by explicit setters and getters 
   ensuring valid data frames.
+  
 • INHERITANCE & POLYMORPHISM: Specialized Imputers and Outlier Handlers inherit 
   from unified abstract-like base structures (BaseImputer, BaseOutlierHandler), 
   executing custom algorithmic behaviors seamlessly at runtime.
+  
 • ERROR RESILIENCE: Complete multi-tier try-except wrappers inside numerical 
   transformations to prevent crashes on corrupted strings.
 
