@@ -3,18 +3,24 @@ This is my second AP course  project as an individual in the second semester at 
 
 <img width="950" height="500" alt="image" src="https://github.com/user-attachments/assets/86f9409e-9592-4cae-a49a-e9511ac581e3" />
 
-# 🎵 Spotify Data Studio 
-### Advanced Interactive Music Data Refinement & Analytics Toolkit
+################################################################################
+#                                                                              #
+# 🎵 SPOTIFY DATA STUDIO                                                       #
+# ######################                                                       #
+# Advanced Interactive Music Data Refinement & Analytics Toolkit               #
+#                                                                              #
+################################################################################
 
-Welcome to **Spotify Data Studio**, a robust, object-oriented Data Engineering and Analytics tool built from scratch in Python. This system is designed to securely ingest raw Spotify datasets, encapsulate data into robust software objects, handle structural anomalies (missing values and outliers), and provide a dynamic Command-Line Interface (CLI) for advanced statistical analysis and data visualization.
+Welcome to Spotify Data Studio, a robust, object-oriented Data Engineering and 
+Analytics tool built from scratch in Python[span_0](start_span)[span_0](end_span). This system is designed to securely 
+ingest raw Spotify datasets, encapsulate data into robust software objects, handle 
+structural anomalies (missing values and outliers), and provide a dynamic 
+Command-Line Interface (CLI) for advanced statistical analysis and data visualization[span_1](start_span)[span_1](end_span).
 
----
+================================================================================
+## 🏗️ PROJECT ARCHITECTURE & FILE STRUCTURE
+================================================================================
 
-## 🏗️ Project Architecture & File Structure
-
-The project is designed with a strict modular approach to ensure clean separation of concerns, scalability, and adherence to Object-Oriented Programming (OOP) principles. 
-
-```text
 📦 Spotify-Data-Studio
 ├── 📂 src
 │   ├── song.py                 # Core Data Model (Encapsulation & Property Validation)
@@ -27,66 +33,36 @@ The project is designed with a strict modular approach to ensure clean separatio
 ├── main.py                     # Project Executable & Interactive CLI Dashboard
 └── README.md                   # Project Documentation
 
+⚠️ NOTE ON FILE STRUCTURE: 
+The main executable engine (main.py) is purposefully kept outside the source 
+(src/) directory to maintain a clean root entry point for execution.
 
-⚠️ Note on File Structure: The main executable engine (main.py) is purposefully kept outside the source (src/) directory to maintain a clean root entry point for execution.
+================================================================================
+## 🚀 KEY FEATURES
+================================================================================
 
-### 🚀 Key Features
+### 1. Robust Data Encapsulation (song.py)
+------------------------------------------
+• Strictly manages song attributes via Python @property decorators[span_2](start_span)[span_2](end_span)[span_3](start_span)[span_3](end_span).
+• Implements hard validation guards for core metrics (e.g., popularity, 
+  danceability, and energy must fall within legal analytical thresholds)[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span).
 
-1. Robust Data Encapsulation (song.py)
+### 2. Advanced Data Pipeline & Cleaning (data_cleaner.py)
+----------------------------------------------------------
+• Missing Value Imputation: Implements custom fallback engines including 
+  MeanImputer, MedianImputer, and multi-attribute KNNImputer[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span).
+• Outlier Mitigation: Prevents analytical skewing using IQROutlierHandler 
+  (Interquartile Range) and ZScoreOutlierHandler boundaries to clamp extreme 
+  variations[span_8](start_span)[span_8](end_span)[span_9](start_span)[span_9](end_span).
 
-• Strictly manages song attributes via Python @property decorators.
+### 3. Comprehensive Analytics & Recommendation Engine (data_analyzer.py)
+--------------------------------------------------------------------------
+• Computes exact descriptive statistics (Mean, Median, Min, Max) bypassing 
+  missing entries safely[span_10](start_span)[span_10](end_span).
+• Offers deep-filtering constraints by specific artists or genres[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span).
+• Built-in content-based proximity metric to recommend similar tracks based on 
+  numeric audio profiles[span_13](start_span)[span_13](end_span).
 
-• Implements hard validation guards for core metrics (e.g., popularity, danceability, and energy must fall within legal analytical thresholds).
-
-
-2. Advanced Data Pipeline & Cleaning (data_cleaner.py)
-
-• Missing Value Imputation: Implements custom fallback engines including MeanImputer, MedianImputer, and multi-attribute KNNImputer.
-
-• Outlier Mitigation: Prevents analytical skewing using IQROutlierHandler (Interquartile Range) and ZScoreOutlierHandler boundaries to clamp extreme variations.
-
-
-3. Comprehensive Analytics & Recommendation Engine (data_analyzer.py)
-
-• Computes exact descriptive statistics (Mean, Median, Min, Max) bypassing missing entries safely.
-
-• Offers deep-filtering constraints by specific artists or genres.
-
-• Built-in content-based proximity metric to recommend similar tracks based on numeric audio profiles.
-
-
-4. Interactive Data Visualization (data_visualizer.py)
-
-• Generates clear, publication-grade distribution visualizers (Box Plots for pre/after cleaning comparisons).
-
-• Creates automated feature relations using Scatter Plots.
-
-• Computes full Audio Feature Correlation Matrices rendered with dynamic coolwarm heatmaps and clean text annotations.
-
-
-
-### 🛠️ Installation & Setup
-### Prerequisites
-Make sure you have Python 3.8+ installed along with the required engineering libraries
-
-
-
-### Execution
-
-To launch the interactive CLI control dashboard, run the root executable
-
-
-
-### 💻 Technical Details & OOP Design
-This architecture actively leverages modern software engineering principles instead of raw linear scripting:
-
-• Encapsulation: Hidden data states protected by explicit setters and getters ensuring valid data frames.
-
-• Inheritance & Polymorphism: Specialized Imputers and Outlier Handlers inherit from unified abstract-like base structures (BaseImputer, BaseOutlierHandler), executing custom algorithmic behaviors seamlessly at runtime.
-
-• Error Resilience: Complete multi-tier try-except wrappers inside numerical transformations to prevent crashes on corrupted strings.
-
-
-
-### 🔊 Interactive System Sounds
-The interactive terminal environment features integrated contextual Sound feedback systems to alert users during file saving transitions, automated calculations completion, and critical error occurrences.
+### 4. Interactive Data Visualization (data_visualizer.py)
+----------------------------------------------------------
+• Generates clear, publication-grade distribution visualizer
