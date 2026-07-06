@@ -120,23 +120,14 @@ audio and trigger events within the interactive environment.
 📦 Spotify-Data-Studio
 
 ├── 📂 src
-
 │   ├── song.py                 # Core Data Model (Encapsulation & Property Validation)
-
 │   ├── data_loader.py          # Safe File I/O, CSV parsing, and Data State Management
-
 │   ├── data_cleaner.py         # Advanced Imputation & Outlier Handling (IQR/Z-Score)
-
 │   ├── data_analyzer.py        # Statistical Engine (Mean, Median, Filtering, Recommendations)
-
 │   └── data_visualizer.py      # Graphics Engine (Matplotlib plots, Heatmaps, WordClouds)
-
 ├── 📂 data
-
 │   └── spotify_dataset.csv     # Raw input dataset
-
 ├── main.py                     # Project Executable & Interactive CLI Dashboard
-
 └── README.md                   # Project Documentation
 
 
