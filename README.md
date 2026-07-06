@@ -15,37 +15,6 @@ ingest raw Spotify datasets, encapsulate data into robust software objects, hand
 structural anomalies (missing values and outliers), and provide a dynamic 
 Command-Line Interface (CLI) for advanced statistical analysis and data visualization.
 
-================================================================================
-## 🏗️ PROJECT ARCHITECTURE & FILE STRUCTURE
-================================================================================
-
-📦 Spotify-Data-Studio
-
-├── 📂 src
-
-│   ├── song.py                 # Core Data Model (Encapsulation & Property Validation)
-
-│   ├── data_loader.py          # Safe File I/O, CSV parsing, and Data State Management
-
-│   ├── data_cleaner.py         # Advanced Imputation & Outlier Handling (IQR/Z-Score)
-
-│   ├── data_analyzer.py        # Statistical Engine (Mean, Median, Filtering, Recommendations)
-
-│   └── data_visualizer.py      # Graphics Engine (Matplotlib plots, Heatmaps, WordClouds)
-
-├── 📂 data
-
-│   └── spotify_dataset.csv     # Raw input dataset
-
-├── main.py                     # Project Executable & Interactive CLI Dashboard
-
-└── README.md                   # Project Documentation
-
-
-
-⚠️ NOTE ON FILE STRUCTURE: 
-The main executable engine (main.py) is purposefully kept outside the source 
-(src/) directory to maintain a clean root entry point for execution.
 
 ================================================================================
 ## 🚀 KEY FEATURES
@@ -134,7 +103,45 @@ audio and trigger events within the interactive environment.
 ================================================================================
 
 • Academic Project for IUST (Iran University of Science and Technology).
+
 • Core Engineering & Framework Design: Amin Amani
+
 • Reference Documentation: Details can be reviewed inside Project-1.pdf.
 
 ################################################################################
+
+
+================================================================================
+## 🏗️ PROJECT ARCHITECTURE & FILE STRUCTURE
+================================================================================
+
+```text
+
+📦 Spotify-Data-Studio
+
+├── 📂 src
+
+│   ├── song.py                 # Core Data Model (Encapsulation & Property Validation)
+
+│   ├── data_loader.py          # Safe File I/O, CSV parsing, and Data State Management
+
+│   ├── data_cleaner.py         # Advanced Imputation & Outlier Handling (IQR/Z-Score)
+
+│   ├── data_analyzer.py        # Statistical Engine (Mean, Median, Filtering, Recommendations)
+
+│   └── data_visualizer.py      # Graphics Engine (Matplotlib plots, Heatmaps, WordClouds)
+
+├── 📂 data
+
+│   └── spotify_dataset.csv     # Raw input dataset
+
+├── main.py                     # Project Executable & Interactive CLI Dashboard
+
+└── README.md                   # Project Documentation
+
+
+
+⚠️ NOTE ON FILE STRUCTURE: 
+The main executable engine (main.py) is purposefully kept outside the source 
+(src/) directory to maintain a clean root entry point for execution.
+
