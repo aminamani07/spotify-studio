@@ -15,7 +15,7 @@ class MeanImputer(BaseImputer) :
                 if (i != "") and (i != 0 ) and ( i != "0") :
                     try :
                         t2.append(float(i))
-                    except :
+                    except (ValueError , TypeError) :
                         continue
             numt2 = np.array(t2)
             mean_value = numt2.mean()
@@ -33,7 +33,7 @@ class MedianImputer(BaseImputer):
                     if (i != "") and (i != 0 )and ( i != "0") :
                         try :
                             t2.append(float(i))
-                        except :
+                        except (ValueError , TypeError) :
                             continue
                 numt2 = np.array(t2)
                 median_value = np.median(numt2)
@@ -55,7 +55,7 @@ class KNNImputer(BaseImputer):
                    else :
                         try :
                             row.append(float(v))
-                        except :
+                        except (ValueError , TypeError) :
                             continue
               mat.append(row)
          imputer = SKNN(n_neighbors=5)
@@ -91,7 +91,7 @@ class IQROutlierHandler(BaseOutlierHandler):
                     setattr(r,feature_name,up)
                 elif low > float(i) :
                     setattr(r,feature_name,low)
-            except :
+            except (ValueError , TypeError) :
                  continue
 class ZScoreOutlierHandler(BaseOutlierHandler):
     def handle(self, track_list, feature_name):
@@ -100,7 +100,7 @@ class ZScoreOutlierHandler(BaseOutlierHandler):
             i = getattr(r , feature_name)
             try :
                 t2.append(float(i))
-            except :
+            except (ValueError , TypeError) :
                  continue
         np_arr = np.array(t2)
         mean_val = np.mean(np_arr)
@@ -114,7 +114,7 @@ class ZScoreOutlierHandler(BaseOutlierHandler):
                     setattr(r,feature_name,up)
                 elif low > float(i) :
                         setattr(r,feature_name,low)
-            except:
+            except (ValueError , TypeError) :
                  continue
             
             

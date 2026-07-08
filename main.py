@@ -251,7 +251,7 @@ def main():
                             print("___________________________RESULTS_____________________________")
                             for id , song in enumerate(l , 1):
                                 print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
-                        ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
+                        ex = input("\ndo you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
                             break
