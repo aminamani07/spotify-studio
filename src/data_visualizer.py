@@ -79,7 +79,7 @@ class Datavisualizer :
                         matrix[i][j] = 0
                     else :
                         matrix[i][j] = num / ((denx * deny)** 0.5)
-                except :
+                except Exception :
                     matrix[i][j]= 0
         plt.clf()
         fig, ax = plt.subplots(figsize=(8, 6))

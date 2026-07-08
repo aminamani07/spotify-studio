@@ -418,7 +418,7 @@ def main():
                     if sa in ["y","yes","Yes"]: 
                         clear_terminal()
                         loader.save_data()
-                except ValueError as e :
+                except (ValueError , Exception) as e :
                     print(e,"\n")
             elif n == 6 :
                 clear_terminal()

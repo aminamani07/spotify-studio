@@ -10,7 +10,7 @@ class Dataanalyzer :
             i = getattr(r , feature_name)
             try :
                 t2.append(float(i))
-            except:
+            except (ValueError , TypeError) :
                 continue
         nt2 = np.array(t2)
         return_val = np.mean(nt2)
@@ -21,7 +21,7 @@ class Dataanalyzer :
             i = getattr(r , feature_name)
             try :
                 t2.append(float(i))
-            except :
+            except (ValueError , TypeError) :
                 continue
         nt2 = np.array(t2)
         return_val = np.median(nt2)
@@ -32,7 +32,7 @@ class Dataanalyzer :
             i = getattr(r , feature_name)
             try :
                 t2.append(float(i))
-            except :
+            except (ValueError , TypeError) :
                 continue
         nt2 = np.array(t2)
         return_val = np.amax(nt2)
@@ -43,7 +43,7 @@ class Dataanalyzer :
             i = getattr(r , feature_name)
             try :
                 t2.append(float(i))
-            except:
+            except (ValueError , TypeError):
                 continue
         nt2 = np.array(t2)
         return_val = np.amin(nt2)
@@ -54,7 +54,7 @@ class Dataanalyzer :
             i = getattr(r , feature_name)
             try :
                 t2.append(float(i))
-            except :
+            except  (ValueError , TypeError):
                 continue
         nt2 = np.array(t2)
         return_val = np.var(nt2)
@@ -65,7 +65,7 @@ class Dataanalyzer :
             i = getattr(r , feature_name)
             try :
                 t2.append(float(i))
-            except :
+            except  (ValueError , TypeError):
                 continue
         nt2 = np.array(t2)
         return_val = np.std(nt2)
@@ -76,7 +76,7 @@ class Dataanalyzer :
             i = getattr(r , feature_name)
             try :
                 t2.append(float(i))
-            except :
+            except  (ValueError , TypeError) :
                 continue
         counter = Counter(t2)
         return_val = counter.most_common(1)[0][0]
@@ -88,7 +88,7 @@ class Dataanalyzer :
             try :
                 if i.lower() == atrists.lower() :
                     t2.append(r)
-            except :
+            except  (ValueError , TypeError):
                 continue
         return t2[:n]
     def filter_by_genre(self , track_genre , n ):
@@ -98,7 +98,7 @@ class Dataanalyzer :
             try :
                 if i == track_genre :
                     t2.append(r)
-            except :
+            except  (ValueError , TypeError) :
                 continue
         return t2[:n]
     def get_top_tracks(self , feature, n):
