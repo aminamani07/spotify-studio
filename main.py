@@ -386,40 +386,42 @@ def main():
                             clear_terminal()
                             break
             elif n == 5 :
-                clear_terminal()
-                try :
-                    print("okkk , now its time the enter your your track variables (20 variable) ... one by one . \n")
-                    track_id = input("enter your track id : ").strip()
-                    artists = input("enter your track artist : ").strip()
-                    album_name = input("enter your track album_name : ").strip()
-                    track_name = input("enter your track name : ").strip()
-                    popularity = input("enter your track popularity : ").strip()
-                    duration_ms = input("enter your track duration_ms : ").strip()
-                    explicit = input("enter your track explicit : ").strip()
-                    danceability = input("enter your track danceability : ").strip()
-                    energy = input("enter your track energy : ").strip()
-                    key = input("enter your track key : ").strip()
-                    loudness = input("enter your track loudness : ").strip()
-                    mode = input("enter your track mode : ").strip()
-                    speechiness = input("enter your track speechiness : ").strip()
-                    acousticness = input("enter your track acousticness : ").strip()
-                    instrumentalness = input("enter your track instrumentalness : ").strip()
-                    liveness = input("enter your track liveness : ").strip()
-                    valence = input("enter your track valence : ").strip()
-                    tempo = input("enter your track tempo : ").strip()
-                    time_signature = input("enter your track time_signature : ").strip()
-                    track_genre = input("enter your track track_genre : ").strip()
-                    new_song = Song(track_id, artists, album_name, track_name, popularity, duration_ms,
-    explicit, danceability, energy, key, loudness, mode, speechiness,
-    acousticness, instrumentalness, liveness, valence, tempo, time_signature,
-    track_genre)
-                    loader.append_track(new_song)
-                    sa = input("do you want to save changes in last output file ? (y/n) : ")
-                    if sa in ["y","yes","Yes"]: 
-                        clear_terminal()
-                        loader.save_data()
-                except (ValueError , Exception) as e :
-                    print(e,"\n")
+                while True :
+                    clear_terminal()
+                    try :
+                        print("okkk , now its time the enter your your track variables (20 variable) ... one by one . \n")
+                        track_id = input("enter your track id : ").strip()
+                        artists = input("enter your track artist : ").strip()
+                        album_name = input("enter your track album_name : ").strip()
+                        track_name = input("enter your track name : ").strip()
+                        popularity = input("enter your track popularity : ").strip()
+                        duration_ms = input("enter your track duration_ms : ").strip()
+                        explicit = input("enter your track explicit : ").strip()
+                        danceability = input("enter your track danceability : ").strip()
+                        energy = input("enter your track energy : ").strip()
+                        key = input("enter your track key : ").strip()
+                        loudness = input("enter your track loudness : ").strip()
+                        mode = input("enter your track mode : ").strip()
+                        speechiness = input("enter your track speechiness : ").strip()
+                        acousticness = input("enter your track acousticness : ").strip()
+                        instrumentalness = input("enter your track instrumentalness : ").strip()
+                        liveness = input("enter your track liveness : ").strip()
+                        valence = input("enter your track valence : ").strip()
+                        tempo = input("enter your track tempo : ").strip()
+                        time_signature = input("enter your track time_signature : ").strip()
+                        track_genre = input("enter your track track_genre : ").strip()
+                        new_song = Song(track_id, artists, album_name, track_name, popularity, duration_ms,
+        explicit, danceability, energy, key, loudness, mode, speechiness,
+        acousticness, instrumentalness, liveness, valence, tempo, time_signature,
+        track_genre)
+                        loader.append_track(new_song)
+                        sa = input("do you want to save changes in last output file ? (y/n) : ")
+                        if sa in ["y","yes","Yes"]: 
+                            clear_terminal()
+                            loader.save_data()
+                        break
+                    except (ValueError , Exception) as e :
+                        print(e,"\n")
             elif n == 6 :
                 clear_terminal()
                 loader.reset_data()
