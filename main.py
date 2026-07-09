@@ -369,7 +369,12 @@ def main():
                             clear_terminal()
                             break
                     elif ch == 4 :
-                        fe = feature_menu()
+                        di = {"1" : "artists" , "2" : "album_name" , "3" : "track_genre" , "4" : "track_name"}
+                        fee = input("\npleas choose your feature : \n1 . artists\n2 . album_name\n3 . track_genre\n4 . track_name\nyour choice number : ").strip()
+                        if fee in list(di.keys()):
+                            fe = di[fee]
+                        else :
+                            fe = None
                         clear_terminal()
                         if fe.lower() in features :
                             datavisualizer.plot_wordcloud(fe.lower())
@@ -390,6 +395,7 @@ def main():
                     clear_terminal()
                     try :
                         print("okkk , now its time the enter your your track variables (20 variable) ... one by one . \n")
+                        id = len(loader.track_list) + 1
                         track_id = input("enter your track id : ").strip()
                         artists = input("enter your track artist : ").strip()
                         album_name = input("enter your track album_name : ").strip()
@@ -410,7 +416,7 @@ def main():
                         tempo = input("enter your track tempo : ").strip()
                         time_signature = input("enter your track time_signature : ").strip()
                         track_genre = input("enter your track track_genre : ").strip()
-                        new_song = Song(track_id, artists, album_name, track_name, popularity, duration_ms,
+                        new_song = Song(id , track_id, artists, album_name, track_name, popularity, duration_ms,
         explicit, danceability, energy, key, loudness, mode, speechiness,
         acousticness, instrumentalness, liveness, valence, tempo, time_signature,
         track_genre)

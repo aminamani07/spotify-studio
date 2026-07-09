@@ -8,7 +8,7 @@ class Data_loader :
         with open(self.file_path , "r", encoding="utf-8") as file :
             reader = csv.DictReader(file)
             for r in reader :
-                s_ob = Song(track_id=r["track_id"], artists=r["artists"], album_name=r["album_name"], track_name=r["track_name"], popularity=r["popularity"], duration_ms=r["duration_ms"],
+                s_ob = Song(id=r["id"],track_id=r["track_id"], artists=r["artists"], album_name=r["album_name"], track_name=r["track_name"], popularity=r["popularity"], duration_ms=r["duration_ms"],
 explicit=r["explicit"], danceability=r["danceability"], energy=r["energy"], key=r["key"], loudness=r["loudness"], mode=r["mode"], speechiness=r["speechiness"],
 acousticness=r["acousticness"], instrumentalness=r["instrumentalness"], liveness=r["liveness"], valence=r["valence"], tempo=r["tempo"], time_signature=r["time_signature"],
 track_genre=r["track_genre"])
@@ -25,7 +25,7 @@ track_genre=r["track_genre"])
     def save_data(self):
         out_path = "data/cleaned_dataset.csv"
         fnames = [
-            "track_id", "artists", "album_name", "track_name", "popularity", 
+            "id","track_id", "artists", "album_name", "track_name", "popularity", 
             "duration_ms", "explicit", "danceability", "energy", "key", 
             "loudness", "mode", "speechiness", "acousticness", "instrumentalness", 
             "liveness", "valence", "tempo", "time_signature", "track_genre"
@@ -35,7 +35,7 @@ track_genre=r["track_genre"])
             writer.writerow(fnames)
             for song in self.track_list:
                 writer.writerow([
-                    song.track_id, song.artists, song.album_name, song.track_name, song.popularity,
+                    song.id,song.track_id, song.artists, song.album_name, song.track_name, song.popularity,
                     song.duration_ms, song.explicit, song.danceability, song.energy, song.key,
                     song.loudness, song.mode, song.speechiness, song.acousticness, song.instrumentalness,
                     song.liveness, song.valence, song.tempo, song.time_signature, song.track_genre

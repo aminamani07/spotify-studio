@@ -1,8 +1,9 @@
 class Song :
-    def __init__(self , track_id, artists, album_name, track_name, popularity, duration_ms,
+    def __init__(self , id , track_id, artists, album_name, track_name, popularity, duration_ms,
                 explicit, danceability, energy, key, loudness, mode, speechiness,
                 acousticness, instrumentalness, liveness, valence, tempo, time_signature,
                 track_genre):
+        self.id = id
         self.track_id = track_id
         self.artists = artists
         self.album_name = album_name
