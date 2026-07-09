@@ -113,5 +113,5 @@ class Dataanalyzer :
             sorted_track = sorted(self.track_list , key = lambda tracks : abs(float(getattr(tracks, feature)) - x))
             return sorted_track[1:n+1]
         except Exception as e :
-            return(e)
+            return e
 
