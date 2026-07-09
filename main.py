@@ -46,7 +46,7 @@ def main():
             clear_terminal()
             try :
                 print("pleas choose one of these items : \n1 . handle missing values (imputation)\n2 . handle outliers (clipping)\n3 . display statistical summary\n4 . data stroytelling & visualization\n5 . add a new track to dataset\n6 . reset dataset (reload original data)\n7 . save \n8 . exit \n")
-                n = int(input("\nyour choice (1 - 7) : ").strip())
+                n = int(input("\nyour choice (1 - 8) : ").strip())
                 print("-" * 40)
             except ValueError as e :
                 print(e)
@@ -68,7 +68,7 @@ def main():
                 while(True) :
                     clear_terminal()
                     try :
-                        print("pleas choose one of this items that you want : \n1 . fulling missing values with using Mean (one feature) \n2 . fulling missing values with using Median (one feature) \n3 . fulling missing values with using LNN or machine learing (all features)\n")
+                        print("pleas choose one of this items that you want : \n1 . fulling missing values with using Mean (one feature) \n2 . fulling missing values with using Median (one feature) \n3 . fulling missing values with using KNN or machine learing (all features)\n")
                         ch = int(input("pleas enter your choice (1 - 3) : ").strip())
                     except ValueError as e :
                         print(e)

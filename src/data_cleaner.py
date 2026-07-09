@@ -12,7 +12,7 @@ class MeanImputer(BaseImputer) :
             t2 = []
             for r in track_list :
                 i = getattr(r , feature_name)
-                if (i != "") and (i != 0 ) and ( i != "0") :
+                if i not in ["" , " " , 0 , "0" , "None" ,  None]:
                     try :
                         t2.append(float(i))
                     except (ValueError , TypeError) :
@@ -21,7 +21,7 @@ class MeanImputer(BaseImputer) :
             mean_value = numt2.mean()
             for r in track_list :
                 i = getattr(r , feature_name)
-                if (i == "") and (i == 0 ) and ( i== "0") :
+                if i in ["" , " " , 0 , "0" , "None" ,  None]:
                     setattr(r,feature_name,mean_value)
 
 
@@ -30,7 +30,7 @@ class MedianImputer(BaseImputer):
                 t2 = []
                 for r in track_list :
                     i = getattr(r , feature_name)
-                    if (i != "") and (i != 0 )and ( i != "0") :
+                    if i not in ["" , " " , 0 , "0" , "None" ,  None] :
                         try :
                             t2.append(float(i))
                         except (ValueError , TypeError) :
@@ -39,7 +39,7 @@ class MedianImputer(BaseImputer):
                 median_value = np.median(numt2)
                 for r in track_list :
                     i = getattr(r , feature_name)
-                    if (i == "") and (i == 0 ) and ( i== "0") :
+                    if i in ["" , " " , 0 , "0" , "None" ,  None]:
                         setattr(r,feature_name,median_value)
 
 class KNNImputer(BaseImputer):
@@ -50,7 +50,7 @@ class KNNImputer(BaseImputer):
               row = []
               for f in features :
                    v = getattr(r , f)
-                   if v == "" and v == "0" and v == 0 :
+                   if v in ["" , " " , 0 , "0" , "None" ,  None] :
                         row.append(np.nan)
                    else :
                         try :
