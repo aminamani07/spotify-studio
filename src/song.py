@@ -20,8 +20,8 @@ class Song :
         self.acousticness = acousticness
         self.instrumentalness = instrumentalness
         self.liveness = liveness
-        self.valence = valence
         #use property
+        self.valence = valence
         self.popularity = popularity
         self.danceability = danceability
         self.energy = energy
@@ -44,7 +44,7 @@ class Song :
         if value is None or value == "":
             self._danceability = 0.0 
             return
-        if not (0 <= float(value) <= 100):
+        if not (0 <= float(value) <= 1.0):
             raise ValueError(f"Danceability error : value '{value}' must be between 0.0 and 1.0 . ")
         self._danceability = float(value)
     @property
@@ -58,5 +58,16 @@ class Song :
         if not (0.0 <= float(value) <= 1.0):
             raise ValueError(f"Energy error : value '{value}' must be between 0.0 and 1.0 . ")
         self._energy = float(value)
+    @property
+    def valence(self):
+        return self._valence
+    @valence.setter
+    def valence(self , value):
+        if value is None or value == "":
+            self._valence = 0.0 
+            return
+        if not (0.0 <= float(value) <= 1.0):
+            raise ValueError(f"Valence error : value '{value}' must be between 0.0 and 1.0 . ")
+        self._valence = float(value)
 
 
