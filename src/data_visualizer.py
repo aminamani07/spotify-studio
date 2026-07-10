@@ -9,7 +9,10 @@ class Datavisualizer :
         t2 = []
         for r in self.track_list :
             i = getattr(r , feature_name)
-            t2.append(float(i))
+            try :
+                t2.append(float(i))
+            except (ValueError , TypeError) :
+                continue
         t = "Box plot ; " + feature_name.upper() + " : " + title
         plt.clf()
         box = plt.boxplot(t2 , patch_artist=True)
@@ -35,8 +38,14 @@ class Datavisualizer :
             i = getattr(r, feature_x)
             j = getattr(r, feature_y)
             g = getattr(r, "track_genre")
-            tx.append(float(i))
-            ty.append(float(j))
+            try :
+                tx.append(float(i))
+            except (ValueError , TypeError) :
+                continue
+            try :
+                ty.append(float(j))
+            except (ValueError , TypeError) :
+                continue
             genres.append(g)
         top_genres = [genre for genre, count in Counter(genres).most_common(10)]
         filtered_tx = []

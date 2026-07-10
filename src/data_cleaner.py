@@ -56,7 +56,7 @@ class KNNImputer(BaseImputer):
                         try :
                             row.append(float(v))
                         except (ValueError , TypeError) :
-                            continue
+                            row.append(np.nan)
               mat.append(row)
          imputer = SKNN(n_neighbors=5)
          cl = imputer.fit_transform(mat)
