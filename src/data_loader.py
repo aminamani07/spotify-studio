@@ -13,7 +13,6 @@ class Data_loader :
     r["track_id"] is None or r["track_id"].strip() == "" or 
     r["track_genre"] is None or r["track_genre"].strip() == "" or 
     r["album_name"] is None or r["album_name"].strip() == ""):
-    
                     continue
                 s_ob = Song(id=r["id"],track_id=r["track_id"], artists=r["artists"], album_name=r["album_name"], track_name=r["track_name"], popularity=r["popularity"], duration_ms=r["duration_ms"],
 explicit=r["explicit"], danceability=r["danceability"], energy=r["energy"], key=r["key"], loudness=r["loudness"], mode=r["mode"], speechiness=r["speechiness"],

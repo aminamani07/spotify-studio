@@ -10,6 +10,7 @@ class BaseImputer :
 class MeanImputer(BaseImputer) :
     def impute(self , track_list , feature_name):
         if feature_name in ["explicit", "track_id" , "track_name" , "artists" , "album_name" , "track_genre"] :
+            print("invalid feature..\n")
             return
         t2 = []
         for r in track_list :
@@ -30,6 +31,7 @@ class MeanImputer(BaseImputer) :
 class MedianImputer(BaseImputer):
     def impute(self , track_list , feature_name):
         if feature_name in ["explicit", "track_id" , "track_name" , "artists" , "album_name" , "track_genre"] :
+            print("invalid feature..\n")
             return
         t2 = []
         for r in track_list :
@@ -77,6 +79,7 @@ class BaseOutlierHandler :
 class IQROutlierHandler(BaseOutlierHandler):
     def handle(self , track_list , feature_name):
         if feature_name in ["explicit", "track_id" , "track_name" , "artists" , "album_name" , "track_genre"] :
+             print("invalid feature..\n")
              return
         t2 = []
         for r in track_list :
@@ -102,6 +105,7 @@ class IQROutlierHandler(BaseOutlierHandler):
 class ZScoreOutlierHandler(BaseOutlierHandler):
     def handle(self, track_list, feature_name):
         if feature_name in ["explicit", "track_id" , "track_name" , "artists" , "album_name" , "track_genre"] :
+            print("invalid feature..\n")
             return
         t2 = []
         for r in track_list :

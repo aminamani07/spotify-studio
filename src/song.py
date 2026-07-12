@@ -3,6 +3,7 @@ class Song :
                 explicit, danceability, energy, key, loudness, mode, speechiness,
                 acousticness, instrumentalness, liveness, valence, tempo, time_signature,
                 track_genre):
+        #use property in some features .
         self.id = id
         self.track_id = track_id
         self.artists = artists
@@ -20,7 +21,6 @@ class Song :
         self.acousticness = acousticness
         self.instrumentalness = instrumentalness
         self.liveness = liveness
-        #use property
         self.valence = valence
         self.popularity = popularity
         self.danceability = danceability
@@ -33,9 +33,11 @@ class Song :
         if value is None or value == "":
             self._popularity = None 
             return
-        if not (0 <= float(value) <= 100):
-            raise ValueError(f"popularity error : value '{value}' must be between 0 and 100 . ")
-        self._popularity = float(value)
+        val = float(value)
+        if not (0 <= val <= 100):
+            self._popularity = None
+        else :
+            self._popularity = val 
     @property
     def danceability(self):
         return self._danceability
@@ -44,9 +46,11 @@ class Song :
         if value is None or value == "":
             self._danceability = None
             return
-        if not (0 <= float(value) <= 1.0):
-            raise ValueError(f"Danceability error : value '{value}' must be between 0.0 and 1.0 . ")
-        self._danceability = float(value)
+        val = float(value)
+        if not (0 <= val <= 1.0):
+            self._danceability = None
+        else :
+            self._danceability = val
     @property
     def energy(self):
         return self._energy
@@ -55,9 +59,11 @@ class Song :
         if value is None or value == "":
             self._energy = None 
             return
-        if not (0.0 <= float(value) <= 1.0):
-            raise ValueError(f"Energy error : value '{value}' must be between 0.0 and 1.0 . ")
-        self._energy = float(value)
+        val = float(value)
+        if not (0.0 <= val <= 1.0):
+            self._energy = None
+        else :
+            self._energy = val
     @property
     def valence(self):
         return self._valence
@@ -66,9 +72,11 @@ class Song :
         if value is None or value == "":
             self._valence = None
             return
-        if not (0.0 <= float(value) <= 1.0):
-            raise ValueError(f"Valence error : value '{value}' must be between 0.0 and 1.0 . ")
-        self._valence = float(value)
+        val = float(value)
+        if not (0.0 <= val <= 1.0):
+            self._valence = None
+        else :
+            self._valence = val
     @property
     def duration_ms(self):
         return self._duration_ms
@@ -199,5 +207,27 @@ class Song :
             self._time_signature = None
         else:
             self._time_signature = val
-
-
+    @property
+    def explicit(self):
+        return self._explicit
+    @explicit.setter
+    def explicit(self, value):
+        if value is None or value == "":
+            self._explicit = None
+            return
+        if isinstance(value, str):
+            cleaned_value = value.strip().lower()
+            if cleaned_value == "true":
+                self._explicit = 1
+                return
+            elif cleaned_value == "false":
+                self._explicit = 0
+                return
+        try:
+            val = int(float(value))
+            if val in [0, 1]:
+                self._explicit = val
+            else:
+                self._explicit = None
+        except (ValueError, TypeError):
+            self._explicit = None

@@ -17,6 +17,8 @@ features = ["track_id" , "artists", "album_name" , "track_name", "popularity", "
 "acousticness", "instrumentalness", "liveness", "valence", "tempo", "time_signature",
 "track_genre"]
 
+fet2 = ["explicit", "track_id" , "track_name" , "artists" , "album_name" , "track_genre"]
+
 def feature_menu():
     for ind , fe in enumerate(features) :
         print(f"{ind + 1} . {fe}")
@@ -68,7 +70,7 @@ def main():
                 while(True) :
                     clear_terminal()
                     try :
-                        print("pleas choose one of this items that you want : \n1 . fulling missing values with using Mean (one feature) \n2 . fulling missing values with using Median (one feature) \n3 . fulling missing values with using KNN or machine learing (all features)\n")
+                        print("pleas choose one of this items that you want : \n1 . fulling missing values with using Mean (one feature... number features) \n2 . fulling missing values with using Median (one feature... number features) \n3 . fulling missing values with using KNN or machine learing (all features)\n")
                         ch = int(input("pleas enter your choice (1 - 3) : ").strip())
                     except ValueError as e :
                         print(e)
@@ -76,7 +78,7 @@ def main():
                     if ch == 1 :
                         fe = feature_menu()
                         clear_terminal()
-                        if fe.lower() in features :
+                        if fe.lower() not in fet2 :
                             imputer = MeanImputer()
                             imputer.impute(loader.track_list , fe.lower())
                             print(f"missing values in {fe} replaced using Mean\n")
@@ -88,7 +90,7 @@ def main():
                     elif ch == 2 :
                         fe = feature_menu()
                         clear_terminal()
-                        if fe.lower() in features :
+                        if fe.lower() not in fet2 :
                             imputer = MedianImputer()
                             imputer.impute(loader.track_list , fe.lower())
                             print(f"missing values in {fe} replaced using Median\n")
@@ -116,7 +118,7 @@ def main():
                 while(True) :
                     clear_terminal()
                     try :
-                        print("pleas choose one of this items that you want : \n1 . handling outlier values with using IQROutlier (one feature) \n2 . handling outlier values with using ZScoreOutlier (one feature) \n")
+                        print("pleas choose one of this items that you want : \n1 . handling outlier values with using IQROutlier (one feature ... number features) \n2 . handling outlier values with using ZScoreOutlier (one feature... number features) \n")
                         ch = int(input("pleas enter your choice (1 - 2) : ").strip())
                     except ValueError as e :
                         ch = 3
@@ -124,7 +126,7 @@ def main():
                     if ch == 1 :
                         fe = feature_menu()
                         clear_terminal()
-                        if fe.lower() in features :
+                        if fe.lower() not in fet2 :
                             handle = IQROutlierHandler()
                             handle.handle(loader.track_list , fe.lower())
                             print(f"outlier values in {fe} handled IQROutlier \n")
@@ -137,7 +139,7 @@ def main():
                     elif ch == 2 :
                         fe = feature_menu()
                         clear_terminal()
-                        if fe.lower() in features :
+                        if fe.lower() not in fet2 :
                             handle = ZScoreOutlierHandler()
                             handle.handle(loader.track_list , fe.lower())
                             print(f"outlier values in {fe} handled ZScoreOutlier \n")
@@ -158,7 +160,7 @@ def main():
                 while(True) :
                     clear_terminal()
                     try :
-                        print("pleas choose one of this items : \n1 . Mean (one feature) \n2 . Median (one feature) \n3 . Maximum (one feature) \n4 . Minimum (one feature) \n5 . Varians (one feature) \n6 . Standard_Divation (one feature) \n7 . Mode (one feature) \n8 . Filter by artist \n9 . Filter by genre \n10 . Get top tracks (in one feature) \n11 . Recommend (in one feature) \n")
+                        print("pleas choose one of this items : \n1 . Mean (one feature... number features) \n2 . Median (one feature... number features) \n3 . Maximum (one feature... number features) \n4 . Minimum (one feature... number features) \n5 . Varians (one feature... number features) \n6 . Standard_Divation (one feature... number features) \n7 . Mode (one feature... number features) \n8 . Filter by artist \n9 . Filter by genre \n10 . Get top tracks (in one feature... number features) \n11 . Recommend (in one feature... number features) \n")
                         ch = int(input("pleas enter your choice (1 - 11) : ").strip())
                     except ValueError as e :
                         print(e)
@@ -251,6 +253,7 @@ def main():
                             print("___________________________RESULTS_____________________________")
                             for id , song in enumerate(l , 1):
                                 print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
+                            print()
                         ex = input("\ndo you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -266,6 +269,7 @@ def main():
                             print("________________________RESULTS____________________________")
                             for id , song in enumerate(l , 1):
                                 print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
+                            print()
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -281,6 +285,7 @@ def main():
                             print("_____________________________RESULTS________________________________")
                             for id , song in enumerate(l , 1):
                                 print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
+                            print()
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
                         if ex in ["y","yes","Yes"]:
                             clear_terminal()
@@ -299,6 +304,7 @@ def main():
                             print("____________________________RESULTS_____________________________")
                             for id , song in enumerate(l , 1):
                                 print(f"{id} . {song.track_name} by {song.artists} . ( Genre : {song.track_genre} )")
+                            print()
                         else :
                             print("No tracks found !\n")
                         ex = input("do you want to exit this part and go back ? (y/n) : ").strip()
@@ -316,7 +322,7 @@ def main():
                 while(True) :
                     clear_terminal()
                     try :
-                        print("pleas choose one of this items that you want : \n1 . Box plot designing (one feature) \n2 . Scatter plot designing (for two feature) \n3 . Correlation matrix designing or Heatmap (all features)\n4 . Wordcloud plot (one feature (str))\n")
+                        print("pleas choose one of this items that you want : \n1 . Box plot designing (one number feature) \n2 . Scatter plot designing (for two number features) \n3 . Correlation matrix designing or Heatmap (all number features)\n4 . Wordcloud plot (one feature (str))\n")
                         ch = int(input("pleas enter your choice (1 - 4) : ").strip())
                     except ValueError as e :
                         print(e)
@@ -416,21 +422,21 @@ def main():
                             print("Error : track name cannot be empty! going back to menu ...\n")
                             input("Press enter to continue...")
                             break
-                        popularity = input("enter your track popularity : ").strip()
+                        popularity = input("enter your track popularity (0 - 100) : ").strip()
                         duration_ms = input("enter your track duration_ms : ").strip()
-                        explicit = input("enter your track explicit : ").strip()
-                        danceability = input("enter your track danceability : ").strip()
-                        energy = input("enter your track energy : ").strip()
-                        key = input("enter your track key : ").strip()
-                        loudness = input("enter your track loudness : ").strip()
-                        mode = input("enter your track mode : ").strip()
-                        speechiness = input("enter your track speechiness : ").strip()
-                        acousticness = input("enter your track acousticness : ").strip()
-                        instrumentalness = input("enter your track instrumentalness : ").strip()
-                        liveness = input("enter your track liveness : ").strip()
-                        valence = input("enter your track valence : ").strip()
-                        tempo = input("enter your track tempo : ").strip()
-                        time_signature = input("enter your track time_signature : ").strip()
+                        explicit = input("enter your track explicit (1 , 0) ---> (1 : true , 0 : false) : ").strip()
+                        danceability = input("enter your track danceability (0.0 - 1.0) : ").strip()
+                        energy = input("enter your track energy (0.0 - 1.0) : ").strip()
+                        key = input("enter your track key (0 - 11) : ").strip()
+                        loudness = input("enter your track loudness (-60.0 - 0.0) : ").strip()
+                        mode = input("enter your track mode (0 , 1) : ").strip()
+                        speechiness = input("enter your track speechiness (0.0 - 1.0) : ").strip()
+                        acousticness = input("enter your track acousticness (0.0 - 1.0) : ").strip()
+                        instrumentalness = input("enter your track instrumentalness (0.0 - 1.0) : ").strip()
+                        liveness = input("enter your track liveness (0.0 - 1.0) : ").strip()
+                        valence = input("enter your track valence (0.0 - 1.0) : ").strip()
+                        tempo = input("enter your track tempo (50 - 250) : ").strip()
+                        time_signature = input("enter your track time_signature (milliseconds , > 0) : ").strip()
                         track_genre = input("enter your track track_genre : ")
                         if track_genre == "" or track_genre.strip() == "" :
                             print("Error : track genre cannot be empty! going back to menu ...\n")
