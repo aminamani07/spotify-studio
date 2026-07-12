@@ -14,7 +14,7 @@ class Dataanalyzer :
                 continue
         nt2 = np.array(t2)
         return_val = np.mean(nt2)
-        return f"Mean : {return_val}\n"
+        return f"Mean : {return_val:.5f}\n"
     def analyze_median(self , feature_name) :
         t2 = []
         for r in self.track_list :
@@ -58,7 +58,7 @@ class Dataanalyzer :
                 continue
         nt2 = np.array(t2)
         return_val = np.var(nt2)
-        return f"Varians : {return_val}\n"
+        return f"Varians : {return_val:.5f}\n"
     def analyze_standarad_deviation(self , feature_name) :
         t2 = []
         for r in self.track_list :
@@ -69,7 +69,7 @@ class Dataanalyzer :
                 continue
         nt2 = np.array(t2)
         return_val = np.std(nt2)
-        return f"Standard Deviation : {return_val}\n"
+        return f"Standard Deviation : {return_val:.5f}\n"
     def analyze_mode(self , feature_name) :
         t2 = []
         for r in self.track_list :
