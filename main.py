@@ -1,6 +1,7 @@
 import os
 import pygame
 import random
+from src.data_loader import s3s
 from src.song import Song
 from src.data_loader import Data_loader
 from src.data_analyzer import Dataanalyzer
@@ -45,6 +46,8 @@ def main():
         loader.read_data()
         print(f"load sucsessfull ... we could load {len(loader.track_list)} track from your file . \n")
         print("==================================\n*** WELCOM TO SPOTIFY STUDIO ***\n=====================================\n")
+        print(f"at first i want to say that in some tracks we have missing string values and we remove them from out data . and the id (number) of them in first dataset : {s3s} ... keep going.")
+        input("press enter to continue ...")
         while(True):
             clear_terminal()
             try :
@@ -460,21 +463,36 @@ def main():
                 loader.reset_data()
             elif n == 7 :
                 if missing_report :
-                    print("--------------------RESULTS-------------------")
-                    for i , j in enumerate(missing_report):
-                        print(f"{i + 1} . {j}")
-                    print()
+                    try :
+                        nu3 = int(input("the number of outlier handling data you want to see : ").strip())
+                        if nu3 < len(outlier_report) :
+                            x = nu3
+                        else :
+                            x = len(outlier_report)
+                        print()
+                        print("--------------------RESULTS-------------------")
+                        for i , j in enumerate(missing_report[:x]):
+                            print(f"{i + 1} . {j}")
+                        print()
+                        input("press enter to continue...")
+                    except (ValueError , TypeError) :
+                        continue
                 else :
                     print("there isn't any report until now . ")
             elif n == 8 :
                 if outlier_report :
                     try :
                         nu3 = int(input("the number of outlier handling data you want to see : ").strip())
+                        if nu3 < len(outlier_report) :
+                            x = nu3
+                        else :
+                            x = len(outlier_report)
                         print()
                         print("--------------------RESULTS-------------------")
-                        for i , j in enumerate(missing_report[:nu3]):
+                        for i , j in enumerate(outlier_report[:x]):
                             print(f"{i + 1} . {j}")
                         print()
+                        input("press enter to continue...")
                     except (ValueError , TypeError) :
                         continue
                 else :
