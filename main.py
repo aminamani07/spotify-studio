@@ -5,6 +5,7 @@ from src.song import Song
 from src.data_loader import Data_loader
 from src.data_analyzer import Dataanalyzer
 from src.data_visualizer import Datavisualizer
+from src.data_cleaner import missing_report , outlier_report
 from src.data_cleaner import MeanImputer , MedianImputer , KNNImputer , BaseImputer , BaseOutlierHandler , ZScoreOutlierHandler , IQROutlierHandler
 
 
@@ -47,13 +48,13 @@ def main():
         while(True):
             clear_terminal()
             try :
-                print("pleas choose one of these items : \n1 . handle missing values (imputation)\n2 . handle outliers (clipping)\n3 . display statistical summary\n4 . data stroytelling & visualization\n5 . add a new track to dataset\n6 . reset dataset (reload original data)\n7 . save \n8 . exit \n")
+                print("pleas choose one of these items : \n1 . handle missing values (imputation)\n2 . handle outliers (clipping)\n3 . display statistical summary\n4 . data stroytelling & visualization\n5 . add a new track to dataset\n6 . reset dataset (reload original data)\n7 . missing values report\n8 . outlier values report\n9 . save \n10 . exit \n")
                 n = int(input("\nyour choice (1 - 8) : ").strip())
                 print("-" * 40)
             except ValueError as e :
                 print(e)
                 n = 9
-            if n == 7 :
+            if n == 9 :
                 loader.save_data()
                 st = input("do you want to exit ? (y/n) : ")
                 if st in ["y","yes","Y"]:
@@ -61,7 +62,7 @@ def main():
                     print("goodbye dear ... nice to see you . \n")
                     pygame.mixer.music.stop()
                     break
-            elif n == 8 :
+            elif n == 10 :
                 clear_terminal()
                 print("goodbye dear ... nice to see you . \n")
                 pygame.mixer.music.stop()
@@ -457,6 +458,27 @@ def main():
             elif n == 6 :
                 clear_terminal()
                 loader.reset_data()
+            elif n == 7 :
+                if missing_report :
+                    print("--------------------RESULTS-------------------")
+                    for i , j in enumerate(missing_report):
+                        print(f"{i + 1} . {j}")
+                    print()
+                else :
+                    print("there isn't any report until now . ")
+            elif n == 8 :
+                if outlier_report :
+                    try :
+                        nu3 = int(input("the number of outlier handling data you want to see : ").strip())
+                        print()
+                        print("--------------------RESULTS-------------------")
+                        for i , j in enumerate(missing_report[:nu3]):
+                            print(f"{i + 1} . {j}")
+                        print()
+                    except (ValueError , TypeError) :
+                        continue
+                else :
+                    print("there isn't any report until now . ")
             else :
                 print("invalid number ... pleas try again ... \n")
 

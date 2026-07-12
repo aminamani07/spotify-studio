@@ -1,6 +1,10 @@
 import numpy as np
 from sklearn.impute import KNNImputer as SKNN
 from src.song import Song
+
+missing_report = []
+outlier_report = []
+
 # Missing Values
 class BaseImputer :
     def impute(self , track_list , feature_name):
@@ -26,6 +30,7 @@ class MeanImputer(BaseImputer) :
             i = getattr(r , feature_name)
             if i in ["" , " " , "None" ,  None]:
                 setattr(r,feature_name,mean_value)
+                missing_report.append(f"track {track_list.index(r)+1} in first dataset : has missing value in feature : {feature_name} . and fixed it with mean and now it is : {mean_value} ")
 
 
 class MedianImputer(BaseImputer):
@@ -47,6 +52,7 @@ class MedianImputer(BaseImputer):
             i = getattr(r , feature_name)
             if i in ["" , " " , 0 , "0" , "None" ,  None]:
                 setattr(r,feature_name,median_value)
+                missing_report.append(f"track {track_list.index(r)+1} in first dataset : has missing value in feature : {feature_name} . and fixed it with median and now it is : {median_value} ")
 
 class KNNImputer(BaseImputer):
     def impute(self , track_list , feature_name = None):
@@ -58,6 +64,7 @@ class KNNImputer(BaseImputer):
                    v = getattr(r , f)
                    if v in ["" , " " , "None" ,  None] :
                         row.append(np.nan)
+                        missing_report.append(f"track {track_list.index(r)+1} in first dataset : has missing value in feature : {f} . and fixed it with KNN (sklearn) . ")
                    else :
                         try :
                             row.append(float(v))
@@ -98,8 +105,10 @@ class IQROutlierHandler(BaseOutlierHandler):
             try :
                 if float(i) > up :
                     setattr(r,feature_name,up)
+                    outlier_report.append(f"track : {track_list.index(r) + 1} . has outlier value : {i} and we fixed it with iqroutlierhandler . after fixing : {up} . ")
                 elif low > float(i) :
                     setattr(r,feature_name,low)
+                    outlier_report.append(f"track : {track_list.index(r) + 1} . has outlier value : {i} and we fixed it with iqroutlierhandler . after fixing : {low} . ")
             except (ValueError , TypeError) :
                  continue
 class ZScoreOutlierHandler(BaseOutlierHandler):
@@ -124,8 +133,10 @@ class ZScoreOutlierHandler(BaseOutlierHandler):
                 i = getattr(r , feature_name)
                 if float(i) > up :
                     setattr(r,feature_name,up)
+                    outlier_report.append(f"track : {track_list.index(r) + 1} . has outlier value : {i} and we fixed it with zcoreoutlierhandler . after fixing : {up} . ")
                 elif low > float(i) :
-                        setattr(r,feature_name,low)
+                    setattr(r,feature_name,low)
+                    outlier_report.append(f"track : {track_list.index(r) + 1} . has outlier value : {i} and we fixed it with zscoreoutlierhandler . after fixing : {low} . ")
             except (ValueError , TypeError) :
                  continue
             
