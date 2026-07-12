@@ -82,7 +82,6 @@ class Song :
             self._duration_ms = None
         else:
             self._duration_ms = val
-
     @property
     def key(self):
         return self._key
@@ -96,7 +95,6 @@ class Song :
             self._key = None
         else:
             self._key = val
-
     @property
     def loudness(self):
         return self._loudness
@@ -110,7 +108,6 @@ class Song :
             self._loudness = None
         else:
             self._loudness = val
-
     @property
     def mode(self):
         return self._mode
@@ -124,7 +121,6 @@ class Song :
             self._mode = None
         else:
             self._mode = val
-
     @property
     def speechiness(self):
         return self._speechiness
@@ -138,7 +134,6 @@ class Song :
             self._speechiness = None
         else:
             self._speechiness = val
-
     @property
     def acousticness(self):
         return self._acousticness
@@ -152,7 +147,6 @@ class Song :
             self._acousticness = None
         else:
             self._acousticness = val
-
     @property
     def instrumentalness(self):
         return self._instrumentalness
@@ -166,7 +160,6 @@ class Song :
             self._instrumentalness = None
         else:
             self._instrumentalness = val
-
     @property
     def liveness(self):
         return self._liveness
@@ -180,7 +173,6 @@ class Song :
             self._liveness = None
         else:
             self._liveness = val
-
     @property
     def tempo(self):
         return self._tempo
@@ -194,7 +186,6 @@ class Song :
             self._tempo = None
         else:
             self._tempo = val
-
     @property
     def time_signature(self):
         return self._time_signature

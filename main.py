@@ -396,23 +396,23 @@ def main():
                     try :
                         print("okkk , now its time the enter your your track variables (20 variable) ... one by one . \n")
                         id = len(loader.track_list) + 1
-                        track_id = input("enter your track id : ").strip()
-                        if track_id == "" :
+                        track_id = input("enter your track id : ")
+                        if track_id == "" or track_id.strip() == "" :
                             print("Error : track id cannot be empty! going back to menu ...\n")
                             input("Press enter to continue...")
                             break
-                        artists = input("enter your track artist : ").strip()
-                        if artists == "" :
+                        artists = input("enter your track artist : ")
+                        if artists == "" or artists.strip() == "" :
                             print("Error : artists cannot be empty! going back to menu ...\n")
                             input("Press enter to continue...")
                             break
-                        album_name = input("enter your track album_name : ").strip()
-                        if album_name == "" :
+                        album_name = input("enter your track album_name : ")
+                        if album_name == "" or album_name.strip() == "" :
                             print("Error : album name cannot be empty! going back to menu ...\n")
                             input("Press enter to continue...")
                             break
-                        track_name = input("enter your track name : ").strip()
-                        if track_name == "" :
+                        track_name = input("enter your track name : ")
+                        if track_name == "" or track_name.strip() == "" :
                             print("Error : track name cannot be empty! going back to menu ...\n")
                             input("Press enter to continue...")
                             break
@@ -431,8 +431,8 @@ def main():
                         valence = input("enter your track valence : ").strip()
                         tempo = input("enter your track tempo : ").strip()
                         time_signature = input("enter your track time_signature : ").strip()
-                        track_genre = input("enter your track track_genre : ").strip()
-                        if track_genre == "" :
+                        track_genre = input("enter your track track_genre : ")
+                        if track_genre == "" or track_genre.strip() == "" :
                             print("Error : track genre cannot be empty! going back to menu ...\n")
                             input("Press enter to continue...")
                             break

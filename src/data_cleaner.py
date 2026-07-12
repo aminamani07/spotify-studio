@@ -9,38 +9,42 @@ class BaseImputer :
 
 class MeanImputer(BaseImputer) :
     def impute(self , track_list , feature_name):
-            t2 = []
-            for r in track_list :
-                i = getattr(r , feature_name)
-                if i not in ["" , " " , 0 , "0" , "None" ,  None]:
-                    try :
-                        t2.append(float(i))
-                    except (ValueError , TypeError) :
-                        continue
-            numt2 = np.array(t2)
-            mean_value = numt2.mean()
-            for r in track_list :
-                i = getattr(r , feature_name)
-                if i in ["" , " " , 0 , "0" , "None" ,  None]:
-                    setattr(r,feature_name,mean_value)
+        if feature_name in ["explicit", "track_id" , "track_name" , "artists" , "album_name" , "track_genre"] :
+            return
+        t2 = []
+        for r in track_list :
+            i = getattr(r , feature_name)
+            if i not in ["" , " " , "None" ,  None]:
+                try :
+                    t2.append(float(i))
+                except (ValueError , TypeError) :
+                    continue
+        numt2 = np.array(t2)
+        mean_value = numt2.mean()
+        for r in track_list :
+            i = getattr(r , feature_name)
+            if i in ["" , " " , "None" ,  None]:
+                setattr(r,feature_name,mean_value)
 
 
 class MedianImputer(BaseImputer):
     def impute(self , track_list , feature_name):
-                t2 = []
-                for r in track_list :
-                    i = getattr(r , feature_name)
-                    if i not in ["" , " " , 0 , "0" , "None" ,  None] :
-                        try :
-                            t2.append(float(i))
-                        except (ValueError , TypeError) :
-                            continue
-                numt2 = np.array(t2)
-                median_value = np.median(numt2)
-                for r in track_list :
-                    i = getattr(r , feature_name)
-                    if i in ["" , " " , 0 , "0" , "None" ,  None]:
-                        setattr(r,feature_name,median_value)
+        if feature_name in ["explicit", "track_id" , "track_name" , "artists" , "album_name" , "track_genre"] :
+            return
+        t2 = []
+        for r in track_list :
+            i = getattr(r , feature_name)
+            if i not in ["" , " " , "None" ,  None] :
+                try :
+                    t2.append(float(i))
+                except (ValueError , TypeError) :
+                    continue
+        numt2 = np.array(t2)
+        median_value = np.median(numt2)
+        for r in track_list :
+            i = getattr(r , feature_name)
+            if i in ["" , " " , 0 , "0" , "None" ,  None]:
+                setattr(r,feature_name,median_value)
 
 class KNNImputer(BaseImputer):
     def impute(self , track_list , feature_name = None):
@@ -50,7 +54,7 @@ class KNNImputer(BaseImputer):
               row = []
               for f in features :
                    v = getattr(r , f)
-                   if v in ["" , " " , 0 , "0" , "None" ,  None] :
+                   if v in ["" , " " , "None" ,  None] :
                         row.append(np.nan)
                    else :
                         try :
@@ -72,6 +76,8 @@ class BaseOutlierHandler :
 
 class IQROutlierHandler(BaseOutlierHandler):
     def handle(self , track_list , feature_name):
+        if feature_name in ["explicit", "track_id" , "track_name" , "artists" , "album_name" , "track_genre"] :
+             return
         t2 = []
         for r in track_list :
             i = getattr(r , feature_name)
@@ -95,6 +101,8 @@ class IQROutlierHandler(BaseOutlierHandler):
                  continue
 class ZScoreOutlierHandler(BaseOutlierHandler):
     def handle(self, track_list, feature_name):
+        if feature_name in ["explicit", "track_id" , "track_name" , "artists" , "album_name" , "track_genre"] :
+            return
         t2 = []
         for r in track_list :
             i = getattr(r , feature_name)
