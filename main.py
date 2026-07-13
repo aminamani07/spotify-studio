@@ -2,6 +2,7 @@ import os
 import pygame
 import random
 from src.data_loader import s3s
+from src.data_cleaner import missing_dict
 from src.song import Song
 from src.data_loader import Data_loader
 from src.data_analyzer import Dataanalyzer
@@ -46,13 +47,13 @@ def main():
         loader.read_data()
         print(f"load sucsessfull ... we could load {len(loader.track_list)} track from your file . \n")
         print("==================================\n*** WELCOM TO SPOTIFY STUDIO ***\n=====================================\n")
-        print(f"at first i want to say that in some tracks we have missing string values and we remove them from out data . and the id (number) of them in first dataset : {s3s} ... keep going.")
+        print(f"at first i want to say that in some tracks we have missing string values and we remove them from out data . and the id (number) of them in first dataset : {s3s} ... keep going.\n")
         input("press enter to continue ...")
         while(True):
             clear_terminal()
             try :
-                print("pleas choose one of these items : \n1 . handle missing values (imputation)\n2 . handle outliers (clipping)\n3 . display statistical summary\n4 . data stroytelling & visualization\n5 . add a new track to dataset\n6 . reset dataset (reload original data)\n7 . missing values report\n8 . outlier values report\n9 . save \n10 . exit \n")
-                n = int(input("\nyour choice (1 - 8) : ").strip())
+                print("pleas choose one of these items : \n1 . handle missing values (imputation)\n2 . handle outliers (clipping)\n3 . display statistical summary\n4 . data stroytelling & visualization\n5 . add a new track to dataset\n6 . reset dataset (reload original data)\n7 . missing values report\n8 . outlier values report\n9 . save \n10 . exit \n11 . report in all features with their missing values number ")
+                n = int(input("\nyour choice (1 - 11) : ").strip())
                 print("-" * 40)
             except ValueError as e :
                 print(e)
@@ -65,6 +66,13 @@ def main():
                     print("goodbye dear ... nice to see you . \n")
                     pygame.mixer.music.stop()
                     break
+            elif n == 11 :
+                clear_terminal()
+                print("report (number features) : \n")
+                for ii , jj in missing_dict.items():
+                    print(f"{ii} : {jj}")
+                print()
+                input("enter press to continue ... ")
             elif n == 10 :
                 clear_terminal()
                 print("goodbye dear ... nice to see you . \n")
